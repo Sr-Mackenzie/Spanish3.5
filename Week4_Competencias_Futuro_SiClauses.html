@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 3.5 Week 4 — La competencia laboral, el futuro simple y si clauses</title>
+<style>
+:root{--navy:#1a2744;--blue:#2c5282;--sky:#ebf4ff;--gold:#d69e2e;--goldlight:#fefcbf;--green:#276749;--greenlight:#c6f6d5;--red:#c53030;--redlight:#fed7d7;--purple:#553c9a;--purplelight:#e9d8fd;--gray:#718096;--graylight:#f7fafc;--white:#fff;--radius:10px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f0f4f8;color:#2d3748;line-height:1.6;}
+header{background:linear-gradient(135deg,var(--navy),var(--blue));color:var(--white);padding:28px 32px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2);}
+header h1{font-size:1.6rem;margin-bottom:4px;}
+header p{opacity:.85;font-size:.95rem;}
+.week-nav{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+.week-nav a{background:rgba(255,255,255,.15);color:var(--white);text-decoration:none;padding:6px 16px;border-radius:20px;font-size:.85rem;transition:.2s;}
+.week-nav a:hover,.week-nav a.active{background:var(--gold);color:var(--navy);font-weight:600;}
+.container{max-width:1100px;margin:0 auto;padding:24px 16px 60px;}
+.unit-overview{background:var(--white);border-radius:var(--radius);padding:24px;margin-bottom:24px;border-left:5px solid var(--gold);box-shadow:0 1px 4px rgba(0,0,0,.08);}
+.unit-overview h2{color:var(--navy);font-size:1.25rem;margin-bottom:8px;}
+.unit-overview ul{list-style:none;padding:0;}
+.unit-overview li{padding:4px 0;padding-left:20px;position:relative;}
+.unit-overview li::before{content:"▸";position:absolute;left:0;color:var(--gold);font-weight:bold;}
+.day-card{background:var(--white);border-radius:var(--radius);margin-bottom:20px;box-shadow:0 1px 6px rgba(0,0,0,.08);overflow:hidden;transition:.2s;}
+.day-card:hover{box-shadow:0 3px 12px rgba(0,0,0,.12);}
+.day-header{padding:16px 20px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none;}
+.day-header h3{font-size:1.1rem;display:flex;align-items:center;gap:10px;}
+.day-num{background:var(--blue);color:var(--white);width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;flex-shrink:0;}
+.day-header .toggle{font-size:1.3rem;color:var(--gray);transition:.3s;}
+.day-card.open .toggle{transform:rotate(180deg);}
+.day-body{display:none;padding:0 20px 20px;}
+.day-card.open .day-body{display:block;}
+.section{margin-bottom:16px;}
+.section-title{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.section-title.obj{color:var(--blue);}
+.section-title.act{color:var(--green);}
+.section-title.cfu{color:var(--gold);}
+.section-title.disc{color:var(--purple);}
+.section-title.diff{color:var(--red);}
+.section-title.grade{color:var(--red);}
+.obj-box{background:var(--sky);border-radius:8px;padding:12px 16px;font-size:.95rem;}
+.obj-box strong{color:var(--blue);}
+.act-list{list-style:none;padding:0;counter-reset:act;}
+.act-list li{padding:8px 12px;background:var(--greenlight);border-radius:6px;margin-bottom:6px;padding-left:36px;position:relative;font-size:.93rem;}
+.act-list li::before{counter-increment:act;content:counter(act);position:absolute;left:10px;top:9px;background:var(--green);color:var(--white);width:20px;height:20px;border-radius:50%;font-size:.7rem;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.cfu-box{background:var(--goldlight);border-radius:8px;padding:12px 16px;font-size:.93rem;border-left:3px solid var(--gold);}
+.disc-box{background:var(--purplelight);border-radius:8px;padding:12px 16px;font-size:.93rem;border-left:3px solid var(--purple);}
+.diff-container{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:700px){.diff-container{grid-template-columns:1fr;}}
+.diff-up,.diff-down{border-radius:8px;padding:12px 16px;font-size:.9rem;}
+.diff-up{background:#fefcbf;border-left:3px solid var(--gold);}
+.diff-down{background:var(--redlight);border-left:3px solid var(--red);}
+.diff-up strong{color:#975a16;}
+.diff-down strong{color:var(--red);}
+.grade-card{background:linear-gradient(135deg,#fff5f5,#fed7d7);border:2px solid var(--red);border-radius:var(--radius);padding:20px;margin-top:24px;}
+.grade-card h3{color:var(--red);margin-bottom:8px;font-size:1.1rem;}
+.grade-card .rubric{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;}
+.grade-card .rubric div{background:var(--white);padding:8px 12px;border-radius:6px;font-size:.88rem;}
+.tag{display:inline-block;font-size:.7rem;padding:2px 8px;border-radius:10px;margin-left:6px;font-weight:600;}
+.tag-vocab{background:#bee3f8;color:#2a4365;}
+.tag-gram{background:#fefcbf;color:#975a16;}
+.tag-culture{background:#c6f6d5;color:#22543d;}
+.tag-assess{background:#fed7d7;color:#9b2c2c;}
+footer{text-align:center;padding:20px;color:var(--gray);font-size:.82rem;}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Unidad 3.5 &mdash; El desarrollo profesional</h1>
+<p>MCPS Spanish 3 &middot; Back-Mapped Unit Plan &middot; Montgomery County Public Schools</p>
+<nav class="week-nav">
+<a href="Week1_Trabajos_y_Presente_Perfecto.html">Week 1</a>
+<a href="Week2_Trayectorias_y_Funciones.html">Week 2</a>
+<a href="Week3_Aspectos_y_Subjuntivo_Adjetival.html">Week 3</a>
+<a href="Week4_Competencias_Futuro_SiClauses.html" class="active">Week 4</a>
+<a href="Week5_Subjuntivo_Adverbial_Pronombres.html">Week 5</a>
+<a href="Week6_Review_y_Assessments.html">Week 6</a>
+</nav>
+</header>
+
+<div class="container">
+
+<!-- WEEK OVERVIEW -->
+<div class="unit-overview">
+<h2>Week 4: La competencia laboral, el futuro simple y las cl&aacute;usulas con "si"</h2>
+<p style="margin-bottom:10px;color:var(--gray);font-size:.9rem;">Focus: Learn vocabulary for job competencies and adjectives describing work, review the future simple tense, and introduce si clauses (present &rarr; future) to discuss career possibilities and consequences.</p>
+<ul>
+<li><strong>Vocabulary:</strong> La competencia laboral (capacitaci&oacute;n, conocimiento t&eacute;cnico, experiencia previa, iniciativa, liderazgo, presentaci&oacute;n, reto) + Los adjetivos (complejo, costoso, fijo/cambiante, laborioso, ligado, perjudicial)</li>
+<li><strong>Grammar:</strong> El futuro simple (review) + Si clause #1: Si + presente + futuro</li>
+<li><strong>Culture:</strong> Workplace competencies valued in Spanish-speaking countries, youth employment challenges, future of work infographic</li>
+<li><strong>Modes:</strong> <span class="badge badge-interp">Interpretive</span> <span class="badge badge-interpersonal">Interpersonal</span> <span class="badge badge-present">Presentational</span></li>
+<li><strong>Weekly Gradebook Entry:</strong> Recorded Partner Interview &mdash; career counselor roleplay using si clauses and competencies (Day 20)</li>
+</ul>
+</div>
+
+<!-- DAY 16 -->
+<div class="day-card open">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">16</span> La competencia laboral &mdash; What Employers Want <span class="tag tag-vocab">Vocabulary</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>identify and describe 7 job competencies</strong> that employers value and <strong>evaluate which competencies I already possess</strong>.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up &mdash; Subjunctive Spiral (5 min):</strong> Display a job posting with 2 blanks. Students fill in the subjunctive verb forms. Quick partner check. This keeps Week 3 grammar alive while transitioning to new vocabulary.</li>
+<li><strong>Competency Vocabulary Introduction with Slides 57&ndash;60 (12 min):</strong> Present each competency using the unit slides: capacitaci&oacute;n, conocimiento t&eacute;cnico, experiencia previa, iniciativa, liderazgo, presentaci&oacute;n (appearance), reto. For each, give a real-world example: "Un programador necesita conocimiento t&eacute;cnico en lenguajes como Python." Students create vocabulary cards (word on front, definition + example on back) &mdash; digital or physical.</li>
+<li><strong>Ranking Activity &mdash; "&iquest;Cu&aacute;l es m&aacute;s importante?" (10 min):</strong> In groups of 3, students rank the 7 competencies from most to least important for a specific career (each group gets a different career card: abogado, ingeniera, empresario, etc.). They must justify their ranking in Spanish. After 6 minutes, one spokesperson presents their top 3 with reasoning. Class can challenge: "&iquest;Por qu&eacute; no incluyeron ______?"</li>
+<li><strong>Self-Reflection &mdash; Slides 61 (10 min):</strong> Students answer the reflection questions from the slide individually: &iquest;Cu&aacute;les de las competencias ya posees? &iquest;Con cu&aacute;les necesitas m&aacute;s pr&aacute;ctica? They write 4&ndash;5 sentences. Then pair-share: "Yo ya tengo experiencia previa porque he trabajado como ______. Pero necesito m&aacute;s pr&aacute;ctica con el liderazgo."</li>
+<li><strong>Wrap-Up (8 min):</strong> Introduce adjectives vocabulary quickly (Slides 69&ndash;71): complejo, costoso, fijo/cambiante, laborioso, ligado, perjudicial. Use TPR (Total Physical Response) &mdash; assign a gesture to each adjective. Practice with rapid call-and-response. Students will use these more deeply tomorrow.</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>Ranking Justifications + Self-Reflection:</strong> Listen to group ranking discussions &mdash; are students using competency vocabulary accurately? The self-reflection writing is a formative snapshot: can they connect competencies to their own experiences using present perfect ("ya he demostrado iniciativa")? Collect or photograph for review.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>Ranking with Justification + Whole-Class Challenge:</strong> The ranking creates natural disagreement, which fuels discourse. Groups MUST agree on an order, so negotiation happens in Spanish. The "challenge" phase after presentations adds another discourse layer. Management: give each group a large piece of paper to write their ranking visibly. The spokesperson is chosen randomly (draw a number). Post justification frames: "Creemos que ______ es m&aacute;s importante porque en este trabajo, una persona necesita ______."</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> Their ranking must include a real-world example for each top 3 competency: "El liderazgo es importante para un abogado porque tiene que dirigir un equipo legal y tomar decisiones bajo presi&oacute;n." Self-reflection: write 6+ sentences and include at least one sentence using the subjunctive from Week 3: "Necesito encontrar un trabajo que me ofrezca capacitaci&oacute;n."</li></div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Provide vocabulary cards pre-made with definitions in both English and Spanish. For the ranking activity, give a simplified set of 5 competencies (drop "presentaci&oacute;n" and "reto" initially). Self-reflection includes sentence starters: "Yo ya tengo ______ porque ______. Necesito practicar ______ porque ______."</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DAY 17 -->
+<div class="day-card">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">17</span> Los adjetivos + El futuro simple &mdash; Review <span class="tag tag-vocab">Vocabulary</span><span class="tag tag-gram">Grammar</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>use adjectives to describe different types of work</strong> and <strong>conjugate the future simple tense</strong> to talk about what I will do in my career.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up &mdash; Adjective TPR Review (5 min):</strong> Repeat yesterday's TPR gestures. Teacher says an adjective, students do the gesture AND use it in a phrase: "complejo &mdash; un trabajo complejo." Then reverse: teacher does the gesture, students say the adjective. Fast-paced, physical, good for getting 8th graders alert.</li>
+<li><strong>Adjective Application with Slides 69&ndash;71 (10 min):</strong> Walk through each adjective in context using the unit slides. Students create a chart: Adjetivo | Significado | Ejemplo. Discuss in pairs: "&iquest;Cu&aacute;l de estos adjetivos describe tu trabajo ideal? &iquest;Cu&aacute;l describe un trabajo que NO quieres?" Share 3&ndash;4 responses with the class.</li>
+<li><strong>Future Simple Review with Slide 62 (10 min):</strong> Quick review of formation: infinitive + endings (-&eacute;, -&aacute;s, -&aacute;, -emos, -&aacute;n). Highlight irregular stems (tendr-, har-, podr-, saldr-, querr-, dir-, sabr-, vendr-, pondr-). Students copy the chart. Whiteboard drill: teacher gives a subject + infinitive, students write the future form. 8&ndash;10 rounds, mixing regular and irregular.</li>
+<li><strong>Infographic Reading &mdash; "El empleo del futuro" (12 min):</strong> Use the infographic from Slide 63. Students work in pairs: (1) Identify all future tense verbs in the infographic, (2) Write one question per section using the future tense, (3) Exchange questions with another pair and answer them. This combines interpretive reading with grammar practice.</li>
+<li><strong>Exit Ticket (8 min):</strong> Write 4 sentences about your future career using the future tense AND at least 2 adjectives: "Trabajar&eacute; en un campo complejo. Tendr&eacute; un horario fijo. Mi carrera no ser&aacute; perjudicial para mi salud. Ganar&eacute; dinero por mi cuenta."</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>Whiteboard Drill + Exit Ticket:</strong> The whiteboard drill gives you instant feedback on future tense conjugation accuracy. The exit ticket checks whether students can APPLY the future tense in context with adjectives. Common error to watch for: using "ir + a + infinitive" instead of the simple future &mdash; both are valid, but this unit targets the simple future specifically.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>Infographic Question Exchange:</strong> Students write questions, then trade with another pair. This creates a natural information gap &mdash; each pair has questions they didn't write, so they must read the infographic carefully to answer. It's also a stealth assessment: the quality of their questions reveals how well they understood the content. Management: set a timer for question-writing (5 min) and answering (5 min).</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> During the infographic activity, they write inference questions (not just factual): "&iquest;Por qu&eacute; crees que este campo crecer&aacute; en el futuro?" Exit ticket: 6 sentences and must include at least 3 irregular future stems. Add a prediction sentence: "En 20 a&ntilde;os, los trabajos m&aacute;s importantes ser&aacute;n ______ porque ______."</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Provide a future tense conjugation reference card (regulars + 5 most common irregulars). For the infographic, provide guided questions rather than having them generate their own. Exit ticket: 3 sentences with a sentence frame: "En el futuro, yo [futuro verb] en un trabajo [adjetivo] porque ______."</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DAY 18 -->
+<div class="day-card">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">18</span> Si Clauses &mdash; Introduction &amp; Practice <span class="tag tag-gram">Grammar</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>form si clauses (Si + present + future)</strong> to discuss real possibilities about my career and post-graduation plans.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up &mdash; Future Tense Quick Check (5 min):</strong> 5 sentences with future tense blanks. Students complete independently, check with partner. Quick review of any errors. Bridge: "Today we'll combine the present and the future in ONE sentence."</li>
+<li><strong>Si Clause Introduction with Slides 64&ndash;66 (12 min):</strong> Walk through the concept using the unit slides. Start with the real-life questions from Slide 64: "&iquest;Qu&eacute; pasar&aacute; si encuentro trabajo?" Present the formula: <strong>Si + presente + futuro</strong>. Show the examples from Slide 65 and have students identify the condition (si clause) and the consequence (future clause) in each. Students copy the formula and 3 model sentences.</li>
+<li><strong>Sentence Completion Practice with Slide 67 (10 min):</strong> Display the 7 sentence starters from Slide 67. Students complete each one with their own future-tense consequence. Work in pairs: compare answers. Did you write the same consequence? Discuss differences. Share 3&ndash;4 interesting answers with the class.</li>
+<li><strong>Fill-in-the-Blank Practice with Slide 68 (8 min):</strong> Students complete the 4 structured practice items from Slide 68, choosing correct present and future forms. Work independently, then partner check. Review as a class, emphasizing: the "si" clause gets PRESENT (not future), and the result clause gets FUTURE.</li>
+<li><strong>"Si Chain" Speaking Game (10 min):</strong> Students sit in a circle (or at desks in rows). Student 1 says a si clause: "Si estudio mucho, sacar&eacute; buenas notas." Student 2 must use the CONSEQUENCE of Student 1's sentence as the beginning of a NEW si clause: "Si saco buenas notas, ir&eacute; a la universidad." Student 3 continues the chain. How long can the class keep it going? Restart if someone breaks the chain.</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>Si Chain Observation + Fill-in-the-Blank:</strong> The fill-in-the-blank from Slide 68 is your written check (collect or photograph). The Si Chain is your oral check: listen for (1) correct tense in each clause, (2) logical connections between ideas. Common error: putting future tense in BOTH clauses ("Si estudiar&eacute;..." &mdash; wrong). Note students who make this error for re-teaching in tomorrow's warm-up.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>"Si Chain" Game:</strong> This is a high-engagement, high-accountability speaking activity. Every student MUST listen to the previous student (or they can't continue the chain). The game element motivates participation &mdash; 8th graders love trying to keep the chain alive. Management: (1) Keep it fast &mdash; 10-second limit per turn. (2) Allow "lifelines" &mdash; a student can ask their neighbor for help once. (3) If the chain breaks, the breaker starts a new one (no shame, just restart). (4) Celebrate the longest chain with a small reward.</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> During sentence completion, they must write consequences using irregular future stems AND competency vocabulary: "Si demuestro liderazgo, tendr&eacute; m&aacute;s oportunidades." In the Si Chain, they add a BECAUSE clause: "Si estudio mucho, sacar&eacute; buenas notas porque el conocimiento t&eacute;cnico es importante." This triples their output per turn.</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Provide a "Si Clause Formula Card" with the pattern color-coded: <span style="color:green;">Si + PRESENT</span>, <span style="color:blue;">FUTURE</span>. For sentence completion, give 3 of the 7 items pre-completed as models. In the Si Chain, allow students to read from a pre-written sentence for their first turn, then try improvising for subsequent turns.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DAY 19 -->
+<div class="day-card">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">19</span> Integrated Practice &mdash; Career Counselor Prep <span class="tag tag-gram">Grammar</span><span class="tag tag-vocab">Vocabulary</span><span class="tag tag-culture">Culture</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>integrate competency vocabulary, adjectives, future tense, and si clauses</strong> in a career counselor conversation and <strong>discuss youth employment challenges</strong>.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up &mdash; Error Correction (5 min):</strong> Display 4 si clause sentences with common errors (future in si clause, missing accent marks, wrong irregular stem). Students identify and correct. Partner check, then whole-class review.</li>
+<li><strong>Youth Employment Challenges &mdash; Slide 76 (10 min):</strong> Display the discussion question: "&iquest;Cu&aacute;les son los desaf&iacute;os de los j&oacute;venes al buscar su primer empleo?" Students brainstorm in groups of 3 using a shared Google Doc or paper. After 5 minutes, each group shares their top 2 challenges. Teacher compiles on board. Discuss: Are these challenges the same in the U.S. and in Spanish-speaking countries?</li>
+<li><strong>Authentic Resource &mdash; "Las competencias laborales necesarias" (12 min):</strong> Use the model activity "Las competencias laborales necesarias para un futuro exitoso." Students read individually, annotating new vocabulary. Then answer 4 comprehension questions. Partner discussion: "&iquest;Qu&eacute; competencia del texto te parece m&aacute;s importante? &iquest;Por qu&eacute;?"</li>
+<li><strong>Career Counselor Conversation Practice (15 min):</strong> This is a rehearsal for tomorrow's recorded assessment. In pairs, students practice a counselor-student conversation (modeled on the Di&aacute;logo simulado format). Student A (counselor) asks 5 questions about career plans, competencies, and future steps. Student B (student) responds using si clauses, future tense, and competency vocabulary. Switch roles after 6 minutes. Provide a question bank on the board, but encourage improvisation.</li>
+<li><strong>Wrap-Up &amp; Assessment Prep (3 min):</strong> Remind students: tomorrow they record a partner interview for the gradebook. They should review competency vocabulary, adjectives, si clauses, and future tense tonight. They will NOT have notes during the recording.</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>Counselor Conversation Observation:</strong> Circulate during the practice conversations with a checklist: (1) Are students using si clauses correctly? (2) Are they integrating competency vocabulary? (3) Can they sustain the conversation for 5+ exchanges? Note specific pairs that need support and pull them aside briefly. This rehearsal data helps you know who is ready for tomorrow's assessment and who needs a quick conference before recording.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>Career Counselor Rehearsal:</strong> This is direct preparation for the di&aacute;logo simulado Common Task from the unit. The counselor-student format gives both students clear roles. Management: (1) Assign partners strategically &mdash; pair students of similar levels so neither dominates. (2) Post the question bank but encourage students to go beyond it. (3) Set a visible timer for each role (6 min). (4) After both rounds, ask 2&ndash;3 pairs to share one strong exchange they had. This builds confidence for tomorrow's recording.</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> During the counselor conversation, they must ask follow-up questions not on the question bank and respond with extended answers (3+ sentences per response). They incorporate vocabulary and grammar from ALL 4 weeks naturally. For the authentic text, they write a personal response: "&iquest;C&oacute;mo te preparar&aacute;s para desarrollar estas competencias?"</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Provide a conversation script template with the counselor questions pre-written and response sentence starters. Allow students to use vocabulary notes during today's PRACTICE (they won't have them tomorrow). For the authentic text, provide a simplified version with cognate highlights and a glossary. Pair them with a supportive partner for the practice conversation.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DAY 20 -->
+<div class="day-card">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">20</span> Weekly Assessment &mdash; Recorded Partner Interview <span class="tag tag-assess">Gradebook</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>participate in a recorded conversation</strong> about my career plans, using si clauses, future tense, and competency vocabulary to discuss possibilities, goals, and qualifications.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up &mdash; Quick Vocabulary &amp; Grammar Review (7 min):</strong> Partner quiz: Student A quizzes Student B on 5 competency vocabulary words (say definition, partner says word). Then switch. Next, each student writes 2 si clause sentences about their career on scratch paper. Not collected &mdash; mental warm-up only.</li>
+<li><strong>Assessment Setup &amp; Instructions (5 min):</strong> Explain the format: pairs will record a 3&ndash;4 minute career counselor conversation on their Chromebooks (using a recording tool in Canvas, Vocaroo, or Google Slides audio). Assign pairs. Distribute the conversation outline (5 questions). Students get 2 minutes of silent reading/thinking time &mdash; no notes, no writing.</li>
+<li><strong>Recording &mdash; Round 1 (10 min):</strong> Student A is the counselor, Student B responds. The counselor reads each prompt; the student has 15&ndash;20 seconds to respond. Record the full conversation. <br><br>
+<em>Conversation prompts:</em><br>
+1. &iquest;Qu&eacute; competencias laborales crees que ya posees?<br>
+2. Si pudieras elegir cualquier carrera, &iquest;cu&aacute;l elegir&iacute;as y por qu&eacute;?<br>
+3. &iquest;Qu&eacute; har&aacute;s despu&eacute;s de graduarte para prepararte?<br>
+4. Si trabajas duro en la escuela, &iquest;qu&eacute; oportunidades tendr&aacute;s?<br>
+5. &iquest;Cu&aacute;les son los retos m&aacute;s grandes para los j&oacute;venes que buscan empleo?</li>
+<li><strong>Recording &mdash; Round 2 (10 min):</strong> Switch roles. Student B is now the counselor, Student A responds. Same process.</li>
+<li><strong>Submission &amp; Reflection (8 min):</strong> Students save and submit recordings to Canvas. Then complete a brief self-reflection (3 sentences): &iquest;Qu&eacute; hiciste bien? &iquest;Qu&eacute; fue dif&iacute;cil? &iquest;Qu&eacute; mejorar&iacute;as?</li>
+<li><strong>Week 4 Wrap-Up (5 min):</strong> Can-Do Statements self-check. Preview Week 5: "Two more grammar structures &mdash; subjunctive with adverbial clauses and relative pronouns &mdash; plus you'll start your individual project!"</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title grade">&#128203; Gradebook Entry &mdash; Week 4 All-Task</div>
+<div class="grade-card">
+<h3>"Mi futuro profesional" &mdash; Recorded Partner Interview</h3>
+<p><strong>Mode:</strong> Interpersonal Speaking &nbsp;|&nbsp; <strong>Time:</strong> 3&ndash;4 min per recording &nbsp;|&nbsp; <strong>Points:</strong> Rubric-based (MCPS Intermediate Learner Interpersonal Rubric)</p>
+<p style="margin-top:8px;"><strong>Requirements:</strong> Respond to 5 career counselor prompts using si clauses, future tense, competency vocabulary, and adjectives. Sustained conversation with comprehensible responses.</p>
+<div class="rubric">
+<div><strong>Language Function:</strong> Responds to all 5 prompts with comprehensible, connected ideas; maintains conversation flow</div>
+<div><strong>Vocabulary:</strong> Uses competency vocabulary, adjectives, and career terms accurately and in context</div>
+<div><strong>Grammar:</strong> Correct use of si clauses (present &rarr; future), future tense conjugations, and integration of prior grammar</div>
+<div><strong>Communication Strategies:</strong> Sustains interaction; asks for clarification if needed; responds within time frame; pronunciation supports comprehension</div>
+</div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>The recording IS the CFU.</strong> When scoring, listen for: (1) Correct si clause structure (most common error: future in both clauses). (2) Integration of vocabulary from Weeks 1&ndash;4 (not just Week 4). (3) Comprehensibility &mdash; can you understand their responses even with errors? (4) Self-reflection quality &mdash; do students accurately identify their strengths and areas for growth? Use this data to plan targeted review in Week 5 warm-ups.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>Recorded Conversation with Role Switch:</strong> This assessment IS discourse &mdash; every student both asks and answers. The recording creates accountability (they know it's being graded) while the partner format keeps it conversational rather than presentational. Management: (1) Stagger recording times if devices are limited &mdash; some pairs record while others do the warm-up or self-reflection. (2) Have backup prompts ready for pairs that finish early. (3) The self-reflection at the end builds metacognition and keeps students engaged after submitting.</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> Counselor role: they must ask at least 2 improvised follow-up questions beyond the 5 prompts. Student role: responses must be 3+ sentences each, incorporating vocabulary from all 4 weeks and at least one subjunctive sentence. Self-reflection must be in Spanish (5+ sentences). They should aim for natural, flowing conversation rather than scripted responses.</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Allow a 1-minute preview (instead of 2-minute silent reading) where they can jot down 3 key vocabulary words they want to use (but not full sentences). Reduce to 4 prompts instead of 5. Counselor questions are printed on a card for easy reading. Scoring emphasizes comprehensibility over grammatical accuracy &mdash; can the message be understood?</div>
+</div>
+</div>
+
+</div>
+</div>
+
+</div><!-- end container -->
+
+<footer>
+<p>Unit 3.5: El desarrollo profesional &middot; MCPS Spanish 3 &middot; Week 4 of 6</p>
+<p style="margin-top:4px;">Back-mapped from Common Tasks: Di&aacute;logo simulado, Examen final, Presentaci&oacute;n escrita, Presentaci&oacute;n oral</p>
+</footer>
+
+<script>
+document.querySelectorAll('.day-card').forEach((card,i)=>{
+  if(i>0) card.classList.remove('open');
+});
+</script>
+
+</body>
+</html>

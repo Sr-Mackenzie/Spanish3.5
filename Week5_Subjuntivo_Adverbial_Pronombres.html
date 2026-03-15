@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 3.5 Week 5 — El subjuntivo con cláusulas adverbiales y los pronombres relativos</title>
+<style>
+:root{--navy:#1a2744;--blue:#2c5282;--sky:#ebf4ff;--gold:#d69e2e;--goldlight:#fefcbf;--green:#276749;--greenlight:#c6f6d5;--red:#c53030;--redlight:#fed7d7;--purple:#553c9a;--purplelight:#e9d8fd;--gray:#718096;--graylight:#f7fafc;--white:#fff;--radius:10px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f0f4f8;color:#2d3748;line-height:1.6;}
+header{background:linear-gradient(135deg,var(--navy),var(--blue));color:var(--white);padding:28px 32px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2);}
+header h1{font-size:1.6rem;margin-bottom:4px;}
+header p{opacity:.85;font-size:.95rem;}
+.week-nav{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+.week-nav a{background:rgba(255,255,255,.15);color:var(--white);text-decoration:none;padding:6px 16px;border-radius:20px;font-size:.85rem;transition:.2s;}
+.week-nav a:hover,.week-nav a.active{background:var(--gold);color:var(--navy);font-weight:600;}
+.container{max-width:1100px;margin:0 auto;padding:24px 16px 60px;}
+.unit-overview{background:var(--white);border-radius:var(--radius);padding:24px;margin-bottom:24px;border-left:5px solid var(--gold);box-shadow:0 1px 4px rgba(0,0,0,.08);}
+.unit-overview h2{color:var(--navy);font-size:1.25rem;margin-bottom:8px;}
+.unit-overview ul{list-style:none;padding:0;}
+.unit-overview li{padding:4px 0;padding-left:20px;position:relative;}
+.unit-overview li::before{content:"▸";position:absolute;left:0;color:var(--gold);font-weight:bold;}
+.day-card{background:var(--white);border-radius:var(--radius);margin-bottom:20px;box-shadow:0 1px 6px rgba(0,0,0,.08);overflow:hidden;transition:.2s;}
+.day-card:hover{box-shadow:0 3px 12px rgba(0,0,0,.12);}
+.day-header{padding:16px 20px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none;}
+.day-header h3{font-size:1.1rem;display:flex;align-items:center;gap:10px;}
+.day-num{background:var(--blue);color:var(--white);width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;flex-shrink:0;}
+.day-header .toggle{font-size:1.3rem;color:var(--gray);transition:.3s;}
+.day-card.open .toggle{transform:rotate(180deg);}
+.day-body{display:none;padding:0 20px 20px;}
+.day-card.open .day-body{display:block;}
+.section{margin-bottom:16px;}
+.section-title{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.section-title.obj{color:var(--blue);}
+.section-title.act{color:var(--green);}
+.section-title.cfu{color:var(--gold);}
+.section-title.disc{color:var(--purple);}
+.section-title.diff{color:var(--red);}
+.section-title.grade{color:var(--red);}
+.obj-box{background:var(--sky);border-radius:8px;padding:12px 16px;font-size:.95rem;}
+.obj-box strong{color:var(--blue);}
+.act-list{list-style:none;padding:0;counter-reset:act;}
+.act-list li{padding:8px 12px;background:var(--greenlight);border-radius:6px;margin-bottom:6px;padding-left:36px;position:relative;font-size:.93rem;}
+.act-list li::before{counter-increment:act;content:counter(act);position:absolute;left:10px;top:9px;background:var(--green);color:var(--white);width:20px;height:20px;border-radius:50%;font-size:.7rem;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.cfu-box{background:var(--goldlight);border-radius:8px;padding:12px 16px;font-size:.93rem;border-left:3px solid var(--gold);}
+.disc-box{background:var(--purplelight);border-radius:8px;padding:12px 16px;font-size:.93rem;border-left:3px solid var(--purple);}
+.diff-container{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:700px){.diff-container{grid-template-columns:1fr;}}
+.diff-up,.diff-down{border-radius:8px;padding:12px 16px;font-size:.9rem;}
+.diff-up{background:#fefcbf;border-left:3px solid var(--gold);}
+.diff-down{background:var(--redlight);border-left:3px solid var(--red);}
+.diff-up strong{color:#975a16;}
+.diff-down strong{color:var(--red);}
+.grade-card{background:linear-gradient(135deg,#fff5f5,#fed7d7);border:2px solid var(--red);border-radius:var(--radius);padding:20px;margin-top:24px;}
+.grade-card h3{color:var(--red);margin-bottom:8px;font-size:1.1rem;}
+.grade-card .rubric{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;}
+.grade-card .rubric div{background:var(--white);padding:8px 12px;border-radius:6px;font-size:.88rem;}
+.tag{display:inline-block;font-size:.7rem;padding:2px 8px;border-radius:10px;margin-left:6px;font-weight:600;}
+.tag-vocab{background:#bee3f8;color:#2a4365;}
+.tag-gram{background:#fefcbf;color:#975a16;}
+.tag-culture{background:#c6f6d5;color:#22543d;}
+.tag-assess{background:#fed7d7;color:#9b2c2c;}
+.tag-project{background:#e9d8fd;color:#44337a;}
+.choice-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:12px 0;}
+@media(max-width:700px){.choice-grid{grid-template-columns:1fr;}}
+.choice-card{background:var(--graylight);border:2px solid #e2e8f0;border-radius:8px;padding:14px;font-size:.9rem;}
+.choice-card h4{color:var(--blue);margin-bottom:4px;font-size:.95rem;}
+footer{text-align:center;padding:20px;color:var(--gray);font-size:.82rem;}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Unidad 3.5 &mdash; El desarrollo profesional</h1>
+<p>MCPS Spanish 3 &middot; Back-Mapped Unit Plan &middot; Montgomery County Public Schools</p>
+<nav class="week-nav">
+<a href="Week1_Trabajos_y_Presente_Perfecto.html">Week 1</a>
+<a href="Week2_Trayectorias_y_Funciones.html">Week 2</a>
+<a href="Week3_Aspectos_y_Subjuntivo_Adjetival.html">Week 3</a>
+<a href="Week4_Competencias_Futuro_SiClauses.html">Week 4</a>
+<a href="Week5_Subjuntivo_Adverbial_Pronombres.html" class="active">Week 5</a>
+<a href="Week6_Review_y_Assessments.html">Week 6</a>
+</nav>
+</header>
+
+<div class="container">
+
+<!-- WEEK OVERVIEW -->
+<div class="unit-overview">
+<h2>Week 5: El subjuntivo con cl&aacute;usulas adverbiales, los pronombres relativos y el proyecto individual</h2>
+<p style="margin-bottom:10px;color:var(--gray);font-size:.9rem;">Focus: Introduce the last two grammar structures &mdash; subjunctive with adverbial clauses and relative pronouns &mdash; then launch the individual choice-board project that integrates all unit content. This week bridges learning into performance.</p>
+<ul>
+<li><strong>Vocabulary:</strong> Adverbial clause triggers (antes de que, con tal de que, cuando, en cuanto/tan pronto como, para que) + Relative pronouns (cuyo/a, el/la/los/las que, lo que, quien(es), que)</li>
+<li><strong>Grammar:</strong> El subjuntivo con cl&aacute;usulas adverbiales + Los pronombres relativos</li>
+<li><strong>Culture:</strong> SomosGo youth employment initiative (Spain/Cruz Roja), youth employment opportunities, authentic job postings</li>
+<li><strong>Modes:</strong> <span class="badge badge-interp">Interpretive</span> <span class="badge badge-interpersonal">Interpersonal</span> <span class="badge badge-present">Presentational</span></li>
+<li><strong>Weekly Gradebook Entry:</strong> Individual Choice-Board Project &mdash; students select format and demonstrate integrated unit mastery (Days 24&ndash;25)</li>
+</ul>
+</div>
+
+<!-- DAY 21 -->
+<div class="day-card open">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">21</span> El subjuntivo con cl&aacute;usulas adverbiales &mdash; Introduction <span class="tag tag-gram">Grammar</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>recognize adverbial clause triggers</strong> (antes de que, con tal de que, cuando, en cuanto, para que) and <strong>understand why the subjunctive follows them</strong> when referring to future or uncertain events.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up &mdash; Si Clause + Future Spiral (5 min):</strong> Students write 2 si clause sentences about their career plans. Partner share. Quick whole-class spotlight on 2 strong examples. Bridge: "Si clauses use present + future. Today we learn ANOTHER structure that uses the subjunctive &mdash; adverbial clauses."</li>
+<li><strong>Noticing Activity with Slides 72&ndash;73 (10 min):</strong> Display the job posting scenario from the slides. Students read the dialogue bubbles: "&iexcl;Tan pronto como <em>llegue</em> a casa voy a solicitar empleo!" / "Antes de que <em>sea</em> muy tarde, voy a mandar mi solicitud." / "Cuando <em>llegue</em> a casa, solicitar&eacute; tambi&eacute;n." In pairs, students underline the trigger phrase and the verb that follows. Discussion: Why is the subjunctive used here? (Because the events haven't happened yet &mdash; they're anticipated.)</li>
+<li><strong>Grammar Explanation with Slide 74 (10 min):</strong> Present the 5 adverbial triggers and the rule: these conjunctions + subjunctive when the action is FUTURE or UNCERTAIN. Write the formula: Trigger phrase + subjunctive verb + main clause (or reverse order). Students copy the 5 triggers with example sentences. Compare with adjective clauses from Week 3: different triggers, same subjunctive forms.</li>
+<li><strong>"Trigger Phrase Relay" (10 min):</strong> Divide class into 4 teams. Each team gets a whiteboard. Teacher displays a career-related scenario: "Tú quieres ser ingeniera. &iquest;Qu&eacute; har&aacute;s?" One team member writes a sentence using the assigned trigger phrase (round 1: antes de que, round 2: para que, etc.). Team checks for accuracy. First correct sentence earns a point. 5 rounds, one for each trigger.</li>
+<li><strong>Guided Practice with Slide 75 (10 min):</strong> Students complete 6 sentences combining a main clause with an adverbial clause, choosing the correct subjunctive form. Work in pairs. Review together, discussing the trigger in each sentence and confirming it requires subjunctive.</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>Exit Ticket:</strong> Write 2 original sentences using 2 different adverbial triggers about your career plans. Example: "Solicitar&eacute; empleo en cuanto termine las clases." / "Estudiar&eacute; mucho para que mis padres est&eacute;n orgullosos." This shows whether students can (1) select the right trigger, (2) conjugate the subjunctive, and (3) connect it to a meaningful main clause.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>Trigger Phrase Relay:</strong> Competition motivates 8th graders. The relay format means only one student writes at a time, but the whole team collaborates (quietly!) to help form the sentence. Management: (1) Teams of 4&ndash;5. (2) Rotate who writes each round. (3) 30-second time limit per round keeps energy high. (4) Award bonus points for using unit vocabulary (not just simple verbs). (5) Display all correct sentences at the end to show the class multiple examples of each trigger.</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> Many will use these structures naturally. Their task: during the noticing activity, explain to their partner HOW the meaning changes if you remove the subjunctive trigger. During guided practice, they complete the standard 6 items PLUS write 3 original sentences using different triggers. In the relay, they serve as "consultants" helping teammates but cannot write themselves (builds collaboration).</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Provide a color-coded trigger card: each of the 5 triggers has its own color with a memory aid (e.g., "antes de que = BEFORE something happens, so it hasn't happened yet = subjunctive"). Guided practice includes the first 2 items modeled. For the exit ticket, give the main clause and students only need to add the adverbial clause using a provided trigger.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DAY 22 -->
+<div class="day-card">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">22</span> Subjuntivo adverbial Practice + Los pronombres relativos <span class="tag tag-gram">Grammar</span><span class="tag tag-culture">Culture</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>use adverbial clauses with subjunctive</strong> in conversation and <strong>identify relative pronouns</strong> (que, quien, cuyo, lo que) to combine sentences and add detail about people and things.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up &mdash; Adverbial Clause Sentence Scramble (5 min):</strong> Display 3 sentences cut into pieces (trigger phrase, subjunctive clause, main clause). Students unscramble in pairs. Quick check. This reinforces yesterday's structure through a puzzle format.</li>
+<li><strong>SomosGo Video &amp; Discussion &mdash; Slide 80 (10 min):</strong> Play the SomosGo initiative video (Cruz Roja, Spain). Pre-viewing questions from the slide: "&iquest;Qu&eacute; ofrece este programa?" "&iquest;Para qui&eacute;n se dirige?" After viewing, partners discuss using adverbial clauses: "Para que los j&oacute;venes encuentren empleo, este programa ofrece ______." "Cuando los j&oacute;venes participen en SomosGo, tendr&aacute;n ______." Share 3&ndash;4 examples as a class.</li>
+<li><strong>Relative Pronouns Introduction with Slides 81&ndash;84 (12 min):</strong> Present the concept: relative pronouns combine two sentences into one, adding detail. Walk through each pronoun with the unit slide examples: que (that/which), quien(es) (who), cuyo/a (whose), lo que (that which/what), el/la/los/las que (the one(s) who/which). Students copy the pronoun chart with examples. Key comparison: "La Sra. Pacheco me entrevist&oacute;. Ella me dijo que me llamar&aacute;." &rarr; "La Sra. Pacheco, quien me entrevist&oacute;, me dijo que me llamar&aacute;."</li>
+<li><strong>Sentence Combining Practice (10 min):</strong> Students receive 6 pairs of simple sentences. They combine each pair using the appropriate relative pronoun. Work in pairs. Example: "Tengo un trabajo. El trabajo me ofrece buenos beneficios." &rarr; "Tengo un trabajo que me ofrece buenos beneficios." Review together. Discuss: How does the relative pronoun change the flow?</li>
+<li><strong>Wrap-Up &amp; Project Preview (8 min):</strong> Introduce the Week 5 Choice-Board Project (assessment for this week). Display the 3 project options. Students review options and begin thinking about which they'll choose. They'll have Day 24 and the first part of Day 25 to complete it.</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>Sentence Combining Check:</strong> Collect or photograph the 6 combined sentences. Look for: (1) Correct pronoun selection (que vs. quien vs. cuyo). (2) Proper placement of the pronoun in the sentence. (3) Agreement with cuyo/a/os/as. Most common error: using "que" for everything. Students who do this need explicit instruction on when to use "quien" (for people after prepositions/commas) and "cuyo" (for possession).</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>SomosGo Cultural Discussion with Target Structures:</strong> The video provides authentic content, and the follow-up discussion requires students to USE adverbial clauses to discuss it. This is discourse with purpose &mdash; they're not just practicing grammar in isolation, they're using it to express ideas about a real program. Post the trigger phrases visibly so students reference them during discussion. The cultural angle (youth employment in Spain) also connects to their own lives.</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> For sentence combining, they receive 8 pairs (not 6) and must use ALL 5 pronoun types at least once. After the SomosGo video, they write a 4-sentence response: "&iquest;Existe un programa similar en tu comunidad? &iquest;Qu&eacute; ofrecer&iacute;as t&uacute; para ayudar a los j&oacute;venes?" They can begin their project choice and planning early if finished.</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Provide a relative pronoun decision tree: "Is it a person? &rarr; Use quien. Does it show possession? &rarr; Use cuyo. Is it a thing/general? &rarr; Use que. Is it an idea/concept? &rarr; Use lo que." Sentence combining exercise has the first 2 completed as models and the pronoun highlighted in the answer. For the video, provide a simplified summary in advance.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DAY 23 -->
+<div class="day-card">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">23</span> Pronombres relativos Practice + Integrated Review <span class="tag tag-gram">Grammar</span><span class="tag tag-vocab">Vocabulary</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>use relative pronouns to add detail</strong> to descriptions of careers and professionals and <strong>integrate vocabulary and grammar from the entire unit</strong> in speaking and writing.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up &mdash; Relative Pronoun Quick Practice with Slide 85 (7 min):</strong> Complete the 4 practice items from the unit slide: fill in que, lo que, quien, or cuyo. Partner check. Whole-class review with explanations for each answer.</li>
+<li><strong>Authentic Text: Job Posting Analysis (12 min):</strong> Display an authentic job posting from a Spanish-language site (or use the model activity "Una oportunidad laboral"). Students work in pairs to: (1) Circle all relative pronouns, (2) Underline all subjunctive verbs, (3) Box all unit vocabulary words. This shows them how ALL the grammar and vocabulary they've learned appears in real-world Spanish. Discuss: How many different grammar structures from our unit appear in this one posting?</li>
+<li><strong>"Describe Your Dream Boss" &mdash; Integrated Speaking (12 min):</strong> Students describe their ideal boss/supervisor using ALL unit grammar structures. The challenge: use at least 1 example of each structure in your description. Model: "Quiero un jefe que sea justo (subj. adj. clause), quien tenga experiencia previa (relative pronoun), para que yo pueda aprender (subj. adv. clause). Si trabajo con un buen l&iacute;der, tendr&eacute; &eacute;xito (si clause)." Partners take turns describing, then vote on whose description was most creative.</li>
+<li><strong>Project Work Time &amp; Planning (10 min):</strong> Students finalize their project choice and begin planning/drafting. Teacher circulates to conference with students individually: confirm project choice, clarify expectations, answer questions.</li>
+<li><strong>Wrap-Up (4 min):</strong> Remind students: tomorrow is a full project work day, and Day 25 is presentation/submission. Review the rubric one more time.</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>Authentic Text Annotation + "Dream Boss" Observation:</strong> The annotation exercise shows whether students can RECOGNIZE the grammar structures in context (interpretive). The "Dream Boss" activity shows whether they can PRODUCE them (interpersonal). Together, these two activities give you a strong picture of who is ready for the project and who needs a quick conference during project work time.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>"Dream Boss" Integrated Challenge:</strong> This is a discourse activity disguised as a game. The challenge format (use ALL structures) turns grammar review into a creative competition. Management: (1) Display the 4 grammar structures as a checklist on the board. (2) Partners track which structures the speaker used. (3) Award "Grammar Champion" to pairs who successfully use all 4. (4) Keep it to 3 minutes per partner &mdash; short bursts maintain energy. The humor of describing a "dream boss" appeals to 8th graders.</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> For "Dream Boss," they must use all 4 structures PLUS present perfect and competency vocabulary. Their authentic text analysis includes a written extension: rewrite the job posting for a different career, maintaining the same grammar structures. During project planning, they should aim for the most ambitious option on the choice board.</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> For "Dream Boss," provide a template paragraph with blanks for each grammar structure. The authentic text annotation can be done with a partner, and the teacher provides a key for the first few items. During project planning, meet with these students first to help them choose an appropriate option and co-create an outline.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DAY 24 -->
+<div class="day-card">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">24</span> Project Work Day <span class="tag tag-project">Project</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>create a project that demonstrates my understanding</strong> of career-related vocabulary and grammar from the entire unit, using the format of my choice from the choice board.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Project Overview &amp; Expectations (5 min):</strong> Display the choice board and rubric. Quick reminders: all content in Spanish, integrate grammar from ALL weeks, use at least 10 vocabulary words across the unit. Students should be actively working the entire period.</li>
+<li><strong>Choice Board Options:</strong>
+<div class="choice-grid">
+<div class="choice-card">
+<h4>Option A: Video / Audio Recording</h4>
+<p>Create a 2&ndash;3 minute video or audio recording where you play a career counselor giving advice to a student. Include recommendations using subjunctive, predictions using si clauses and future tense, and descriptions using relative pronouns. Must use 10+ unit vocabulary words.</p>
+</div>
+<div class="choice-card">
+<h4>Option B: Digital Infographic / Canva Poster</h4>
+<p>Design a career guide infographic for teenagers. Include: 3 careers with functions, competencies needed, hiring process steps, and advice using adverbial clauses ("Antes de que solicites empleo..."). Must use 10+ unit vocabulary words and all grammar structures visually labeled.</p>
+</div>
+<div class="choice-card">
+<h4>Option C: Written Career Plan</h4>
+<p>Write a 15&ndash;20 sentence career plan letter to your future self. Include: your chosen career and why, competencies you'll develop, steps you'll take (si clauses), what you'll do before/after graduation (adverbial clauses), and descriptions of your ideal workplace (adj. clauses + relative pronouns). 10+ vocabulary words.</p>
+</div>
+</div>
+</li>
+<li><strong>Independent Work Time (35 min):</strong> Students work on Chromebooks. Teacher circulates, conferencing with 8&ndash;10 students individually (prioritize students who need support). Play quiet Spanish-language music in the background. Check-in at 15 minutes: "Who needs help? Who is on track? Who is almost done?"</li>
+<li><strong>End-of-Class Check-In (5 min):</strong> Quick show of hands: Who will finish today? Who needs more time tomorrow? Remind students: Day 25 has 20 minutes of work time, then submission and peer sharing.</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>Individual Conferences:</strong> As you circulate, check each student's progress with a quick 1&ndash;2 minute conference. Key questions: "Show me where you used the subjunctive." "Which vocabulary words have you included so far?" "Do you have all the grammar structures represented?" This real-time feedback prevents students from submitting incomplete work tomorrow.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>This is an independent work day, but discourse still happens:</strong> (1) Option A requires students to record dialogue, so they're speaking Spanish even while "working independently." (2) Allow brief "consultant breaks" &mdash; students can ask a classmate for help on vocabulary or grammar for 2 minutes, then return to independent work. (3) During conferences, ask questions IN SPANISH: "&iquest;Qu&eacute; est&aacute;s creando?" "&iquest;C&oacute;mo usaste el subjuntivo aqu&iacute;?"</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> Extended requirements across all options: 15+ vocabulary words, all grammar structures used at least twice, and a cultural comparison element (how does your chosen career differ in the U.S. vs. a Spanish-speaking country?). If they finish early, they can create a "bonus" element: a mock interview video, an additional infographic page, or an appendix to their letter.</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Provide a project checklist with each requirement listed as a checkbox. For Option C, offer a paragraph-by-paragraph outline with sentence starters. For Options A and B, provide a planning template that maps each required element to a specific section. Reduce vocabulary minimum to 7 words. Conference with these students first and check in again at the 20-minute mark.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DAY 25 -->
+<div class="day-card">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">25</span> Project Completion, Sharing &amp; Weekly Assessment <span class="tag tag-assess">Gradebook</span><span class="tag tag-project">Project</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>finalize and submit my project</strong> demonstrating integrated mastery of unit vocabulary and grammar, and I can <strong>give constructive peer feedback</strong> in Spanish.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Final Work Time (15 min):</strong> Students finalize their projects. Teacher circulates for last-minute conferences. At the 12-minute mark, announce: "3 minutes left &mdash; start wrapping up and saving!"</li>
+<li><strong>Submission (3 min):</strong> All students submit to Canvas. Options A (video): upload file or link. Option B (infographic): submit image or Canva link. Option C (written): submit document.</li>
+<li><strong>Gallery Walk / Listening Party (15 min):</strong> Set up a sharing session:<br>
+&bull; Option A students: play their video/audio at their desk station. Visitors listen and take notes.<br>
+&bull; Option B students: display their infographic on their Chromebook screen. Visitors read and take notes.<br>
+&bull; Option C students: print or display their letter. Visitors read the first paragraph and take notes.<br>
+Rotate every 3 minutes. Each visitor completes a feedback form for 3 classmates: one "glow" (strength) and one "grow" (suggestion), both in Spanish.</li>
+<li><strong>Whole-Class Spotlights (7 min):</strong> Teacher highlights 3&ndash;4 exemplary projects (one from each option if possible). Ask the creators to share one thing they're proud of. Celebrate the range of creativity.</li>
+<li><strong>Week 5 Wrap-Up &amp; Week 6 Preview (5 min):</strong> Can-Do Statements final self-check. Preview Week 6: "Next week is review and assessments &mdash; the di&aacute;logo simulado and the examen final. Everything you've learned comes together."</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title grade">&#128203; Gradebook Entry &mdash; Week 5 All-Task</div>
+<div class="grade-card">
+<h3>"Mi plan profesional" &mdash; Individual Choice-Board Project</h3>
+<p><strong>Mode:</strong> Presentational Writing/Speaking (varies by option) &nbsp;|&nbsp; <strong>Time:</strong> ~50 min total (Days 24&ndash;25) &nbsp;|&nbsp; <strong>Points:</strong> Rubric-based (adjusted MCPS Intermediate Learner Presentational Rubric)</p>
+<p style="margin-top:8px;"><strong>Requirements:</strong> Choice of video, infographic, or written plan. Must integrate all grammar structures (present perfect, subjunctive adj. + adv. clauses, si clauses, future tense, relative pronouns) and 10+ unit vocabulary words.</p>
+<div class="rubric">
+<div><strong>Task Completion:</strong> All required elements present for chosen option; meets vocabulary minimum (10 words across all unit weeks)</div>
+<div><strong>Grammar Integration:</strong> Demonstrates accurate use of 4+ grammar structures from the unit; structures are used meaningfully, not forced</div>
+<div><strong>Vocabulary Breadth:</strong> Uses vocabulary from multiple weeks (not just one category); words used accurately in context</div>
+<div><strong>Comprehensibility &amp; Creativity:</strong> Project is understandable and well-organized; shows creative engagement with the content; visual/audio elements enhance meaning</div>
+</div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>The project IS the comprehensive CFU.</strong> It reveals: (1) Which grammar structures students have truly internalized vs. which they can only produce with scaffolding. (2) Whether vocabulary usage is broad (drawing from all weeks) or narrow (only recent words). (3) Overall communicative competence &mdash; can they sustain a coherent message? Use project scores to identify specific grammar structures that need re-teaching in Week 6's review days.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>Gallery Walk / Listening Party with Feedback Forms:</strong> This creates natural discourse around student work. Management: (1) Assign rotation groups so students don't cluster. (2) The feedback form is in Spanish, adding a writing element: "Una fortaleza es ______. Una sugerencia es ______." (3) Limit to 3 classmate reviews so it stays focused. (4) The whole-class spotlight at the end validates effort and builds community. For 8th graders, the variety of project formats keeps the gallery walk interesting.</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> Their peer feedback must include a specific grammar observation: "Me gust&oacute; c&oacute;mo usaste el subjuntivo cuando dijiste ______." During the spotlight, they can present their cultural comparison element to the class (1&ndash;2 minutes). Their projects are evaluated on sophistication of language in addition to accuracy.</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Allow these students to present their project privately to the teacher (rather than in the gallery walk) if they prefer. Feedback forms include sentence starters. Grading emphasizes comprehensibility and effort over grammatical perfection. If a student's project is incomplete, allow a modified submission (e.g., fewer sentences but all required grammar structures present).</div>
+</div>
+</div>
+
+</div>
+</div>
+
+</div><!-- end container -->
+
+<footer>
+<p>Unit 3.5: El desarrollo profesional &middot; MCPS Spanish 3 &middot; Week 5 of 6</p>
+<p style="margin-top:4px;">Back-mapped from Common Tasks: Di&aacute;logo simulado, Examen final, Presentaci&oacute;n escrita, Presentaci&oacute;n oral</p>
+</footer>
+
+<script>
+document.querySelectorAll('.day-card').forEach((card,i)=>{
+  if(i>0) card.classList.remove('open');
+});
+</script>
+
+</body>
+</html>

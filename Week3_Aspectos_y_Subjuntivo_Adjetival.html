@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 3.5 Week 3 — Los aspectos del trabajo y el subjuntivo con cláusulas adjetivas</title>
+<style>
+:root{--navy:#1a2744;--blue:#2c5282;--sky:#ebf4ff;--gold:#d69e2e;--goldlight:#fefcbf;--green:#276749;--greenlight:#c6f6d5;--red:#c53030;--redlight:#fed7d7;--purple:#553c9a;--purplelight:#e9d8fd;--gray:#718096;--graylight:#f7fafc;--white:#fff;--radius:10px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f0f4f8;color:#2d3748;line-height:1.6;}
+header{background:linear-gradient(135deg,var(--navy),var(--blue));color:var(--white);padding:28px 32px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2);}
+header h1{font-size:1.6rem;margin-bottom:4px;}
+header p{opacity:.85;font-size:.95rem;}
+.week-nav{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+.week-nav a{background:rgba(255,255,255,.15);color:var(--white);text-decoration:none;padding:6px 16px;border-radius:20px;font-size:.85rem;transition:.2s;}
+.week-nav a:hover,.week-nav a.active{background:var(--gold);color:var(--navy);font-weight:600;}
+.container{max-width:1100px;margin:0 auto;padding:24px 16px 60px;}
+.unit-overview{background:var(--white);border-radius:var(--radius);padding:24px;margin-bottom:24px;border-left:5px solid var(--gold);box-shadow:0 1px 4px rgba(0,0,0,.08);}
+.unit-overview h2{color:var(--navy);font-size:1.25rem;margin-bottom:8px;}
+.unit-overview ul{list-style:none;padding:0;}
+.unit-overview li{padding:4px 0;padding-left:20px;position:relative;}
+.unit-overview li::before{content:"▸";position:absolute;left:0;color:var(--gold);font-weight:bold;}
+.day-card{background:var(--white);border-radius:var(--radius);margin-bottom:20px;box-shadow:0 1px 6px rgba(0,0,0,.08);overflow:hidden;transition:.2s;}
+.day-card:hover{box-shadow:0 3px 12px rgba(0,0,0,.12);}
+.day-header{padding:16px 20px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none;}
+.day-header h3{font-size:1.1rem;display:flex;align-items:center;gap:10px;}
+.day-num{background:var(--blue);color:var(--white);width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;flex-shrink:0;}
+.day-header .toggle{font-size:1.3rem;color:var(--gray);transition:.3s;}
+.day-card.open .toggle{transform:rotate(180deg);}
+.day-body{display:none;padding:0 20px 20px;}
+.day-card.open .day-body{display:block;}
+.section{margin-bottom:16px;}
+.section-title{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.section-title.obj{color:var(--blue);}
+.section-title.act{color:var(--green);}
+.section-title.cfu{color:var(--gold);}
+.section-title.disc{color:var(--purple);}
+.section-title.diff{color:var(--red);}
+.section-title.grade{color:var(--red);}
+.badge{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.75rem;font-weight:600;}
+.badge-interp{background:#bee3f8;color:#2a4365;}
+.badge-interpersonal{background:#c6f6d5;color:#22543d;}
+.badge-present{background:#e9d8fd;color:#44337a;}
+.obj-box{background:var(--sky);border-radius:8px;padding:12px 16px;font-size:.95rem;}
+.obj-box strong{color:var(--blue);}
+.act-list{list-style:none;padding:0;counter-reset:act;}
+.act-list li{padding:8px 12px;background:var(--greenlight);border-radius:6px;margin-bottom:6px;padding-left:36px;position:relative;font-size:.93rem;}
+.act-list li::before{counter-increment:act;content:counter(act);position:absolute;left:10px;top:9px;background:var(--green);color:var(--white);width:20px;height:20px;border-radius:50%;font-size:.7rem;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.cfu-box{background:var(--goldlight);border-radius:8px;padding:12px 16px;font-size:.93rem;border-left:3px solid var(--gold);}
+.disc-box{background:var(--purplelight);border-radius:8px;padding:12px 16px;font-size:.93rem;border-left:3px solid var(--purple);}
+.diff-container{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:700px){.diff-container{grid-template-columns:1fr;}}
+.diff-up,.diff-down{border-radius:8px;padding:12px 16px;font-size:.9rem;}
+.diff-up{background:#fefcbf;border-left:3px solid var(--gold);}
+.diff-down{background:var(--redlight);border-left:3px solid var(--red);}
+.diff-up strong{color:#975a16;}
+.diff-down strong{color:var(--red);}
+.grade-card{background:linear-gradient(135deg,#fff5f5,#fed7d7);border:2px solid var(--red);border-radius:var(--radius);padding:20px;margin-top:24px;}
+.grade-card h3{color:var(--red);margin-bottom:8px;font-size:1.1rem;}
+.grade-card .rubric{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;}
+.grade-card .rubric div{background:var(--white);padding:8px 12px;border-radius:6px;font-size:.88rem;}
+.tag{display:inline-block;font-size:.7rem;padding:2px 8px;border-radius:10px;margin-left:6px;font-weight:600;}
+.tag-vocab{background:#bee3f8;color:#2a4365;}
+.tag-gram{background:#fefcbf;color:#975a16;}
+.tag-culture{background:#c6f6d5;color:#22543d;}
+.tag-assess{background:#fed7d7;color:#9b2c2c;}
+footer{text-align:center;padding:20px;color:var(--gray);font-size:.82rem;}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Unidad 3.5 &mdash; El desarrollo profesional</h1>
+<p>MCPS Spanish 3 &middot; Back-Mapped Unit Plan &middot; Montgomery County Public Schools</p>
+<nav class="week-nav">
+<a href="Week1_Trabajos_y_Presente_Perfecto.html">Week 1</a>
+<a href="Week2_Trayectorias_y_Funciones.html">Week 2</a>
+<a href="Week3_Aspectos_y_Subjuntivo_Adjetival.html" class="active">Week 3</a>
+<a href="Week4_Competencias_Futuro_SiClauses.html">Week 4</a>
+<a href="Week5_Subjuntivo_Adverbial_Pronombres.html">Week 5</a>
+<a href="Week6_Review_y_Assessments.html">Week 6</a>
+</nav>
+</header>
+
+<div class="container">
+
+<!-- WEEK OVERVIEW -->
+<div class="unit-overview">
+<h2>Week 3: Los aspectos del trabajo y el subjuntivo con cl&aacute;usulas adjetivas</h2>
+<p style="margin-bottom:10px;color:var(--gray);font-size:.9rem;">Focus: Learn the hiring process and workplace vocabulary, watch interview preparation videos, and introduce the subjunctive mood with adjective clauses to describe ideal candidates and unknown qualities.</p>
+<ul>
+<li><strong>Vocabulary:</strong> Los aspectos del trabajo (beneficios, carta de recomendaci&oacute;n, contrataci&oacute;n, curriculum vitae, entrevista, desempe&ntilde;o laboral, horario, mercado laboral, oferta, puesto, requisito, trabajo de medio/tiempo completo, turno) + Verbs (desempe&ntilde;ar, emprender, ganar dinero por su cuenta, hacer su sue&ntilde;o realidad, ocuparse de, solicitar un empleo)</li>
+<li><strong>Grammar:</strong> El subjuntivo con cl&aacute;usulas adjetivas &mdash; &iquest;Conoces a alguien que...? No hay nadie que... Se busca a alguien que... Queremos emplear a gente que...</li>
+<li><strong>Culture:</strong> The hiring process, interview etiquette, recommendation letter debate, D&iacute;a del trabajador</li>
+<li><strong>Modes:</strong> <span class="badge badge-interp">Interpretive</span> <span class="badge badge-interpersonal">Interpersonal</span> <span class="badge badge-present">Presentational</span></li>
+<li><strong>Weekly Gradebook Entry:</strong> Job Posting Creation &mdash; "Se busca..." classified ad using the subjunctive (Day 15)</li>
+</ul>
+</div>
+
+<!-- DAY 11 -->
+<div class="day-card open">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">11</span> La contrataci&oacute;n &mdash; The Hiring Process <span class="tag tag-vocab">Vocabulary</span><span class="tag tag-culture">Culture</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>describe the steps of the hiring process</strong> in order (solicitar, entrevista, oferta, contrataci&oacute;n) and <strong>identify key workplace vocabulary</strong> related to getting a job.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up &mdash; Spiral Review (5 min):</strong> Project 3 career images. Students write a sentence for each using a function verb from Week 2: "La cient&iacute;fica investiga nuevas bacterias." Share with a partner.</li>
+<li><strong>Hiring Process Sequence with Slides 26&ndash;27 (12 min):</strong> Walk through the 4-step hiring process using the unit slides: asistir a una feria de empleo &rarr; solicitar empleo / enviar el CV &rarr; la entrevista &rarr; la oferta. Students create a visual flow chart in notebooks with the 4 steps, adding a key vocabulary word or phrase at each step. Introduce related verbs: solicitar un empleo, desempe&ntilde;ar, emprender.</li>
+<li><strong>Vocabulary Stations (15 min):</strong> Set up 4 stations around the room, each focused on a cluster of workplace vocabulary: <br>
+Station 1: La solicitud (CV, requisito, solicitar empleo) &mdash; students match sample CV sections to vocabulary<br>
+Station 2: La entrevista (entrevista, puesto, oferta) &mdash; students sequence interview dialogue strips<br>
+Station 3: El horario (horario, turno, medio tiempo, tiempo completo) &mdash; students read sample schedules and answer questions<br>
+Station 4: El trabajo (beneficios, mercado laboral, desempe&ntilde;o laboral) &mdash; students match definitions<br>
+Groups rotate every 3.5 minutes.</li>
+<li><strong>Partner Sequence Retell (8 min):</strong> Without looking at notes, partners take turns retelling the hiring process to each other in Spanish. Listener checks accuracy using their flow chart. Switch roles. Sentence frame: "Primero, t&uacute; ______. Despu&eacute;s, ______. Luego, ______. Finalmente, ______."</li>
+<li><strong>Wrap-Up (5 min):</strong> Teacher quickly introduces D&iacute;a del trabajador (Slide 49) as a cultural note &mdash; when is it celebrated in Latin America vs. the U.S.? Quick discussion: Why might the dates differ?</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>Station Accountability Sheets:</strong> Each station has a short task students complete on a recording sheet. Collect at the end &mdash; quick scan shows who understood the vocabulary at each station. Also listen during partner retell for correct sequencing and vocabulary use.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>Stations + Partner Retell:</strong> Stations create natural movement and small-group interaction (groups of 3&ndash;4). The partner retell afterward adds accountability &mdash; students know they need to remember what they learned at each station. Management: assign groups before class, post rotation directions clearly, use a loud timer/bell for transitions. The physical activity of moving between stations helps reset 8th-grader attention spans.</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> At each station, they complete the standard task PLUS write one original sentence using the vocabulary in a real-world context. During the partner retell, they must add details beyond the 4 basic steps: "Despu&eacute;s de solicitar empleo, es importante dar seguimiento..." They can also share personal/family anecdotes about the hiring process.</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> The flow chart template is partially filled in (Step 1 completed as a model). Station recording sheets include word banks and visual cues. For the partner retell, allow students to reference their flow chart and provide the sequence words (primero, despu&eacute;s, luego, finalmente) on a card.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DAY 12 -->
+<div class="day-card">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">12</span> La entrevista &mdash; Interview Prep <span class="tag tag-vocab">Vocabulary</span><span class="tag tag-culture">Culture</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>ask and answer common job interview questions</strong> in Spanish and <strong>identify qualities of a strong candidate</strong>.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up &mdash; Hiring Process Recap (5 min):</strong> Students number the hiring steps 1&ndash;4 from a scrambled list on the board. Quick partner check, then whole-class confirm. Today we zoom into step 3: la entrevista.</li>
+<li><strong>Video: C&oacute;mo prepararse para una entrevista (10 min):</strong> Play the video from Slide 34 (or an authentic YouTube clip about interview preparation in Spanish). Pre-viewing: give students 3 tips to listen for. Post-viewing: partners compare the 3 tips they heard. Whole-class share to build a master list on the board.</li>
+<li><strong>Interview Q&amp;A with Slides 35&ndash;36 (10 min):</strong> Present the 6 sample interview questions and model responses from the unit slides. Students copy the 6 questions into their notebooks. For each question, discuss: What is the interviewer really asking? What makes a strong answer? Introduce "cualidades de un buen candidato" (Slide 31).</li>
+<li><strong>Mock Interview Roleplay (15 min):</strong> In pairs, students roleplay an interview. Student A is the interviewer (picks 3 of the 6 questions from their notebook). Student B is the candidate and must answer in complete sentences. After 5 minutes, switch roles. Circulate and note strong answers to highlight afterward. Post sentence frames for responses: "Solicité este trabajo porque ______." / "Poseo destrezas de ______."</li>
+<li><strong>Recommendation Letter Debate (5 min):</strong> Quick poll using Slide 33: When should you present a carta de recomendación &mdash; before, during, or after the interview? Students raise hands, teacher tallies. Ask 2&ndash;3 students to defend their position in Spanish. No right answer &mdash; the goal is discourse.</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>Roleplay Observation:</strong> During mock interviews, circulate with a checklist. Note: (1) Are students using the interview questions correctly? (2) Are responses in complete sentences? (3) Are they using workplace vocabulary naturally? Flag students who struggle to form responses for additional support on Day 13.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>Mock Interview with Role Cards:</strong> Each student gets a role card. The interviewer card lists 3 questions they must ask (chosen from the 6). The candidate card includes sentence starters for responses. This scaffolding prevents 8th graders from going off-script into English. The role switch ensures every student practices BOTH asking and answering. Tip: pair stronger speakers with students who need support so the stronger student models first as the candidate.</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> Their interviewer role card includes 2 additional improvised follow-up questions they must create on the spot. As candidates, they answer without sentence frames and add a "closing statement" at the end: "Gracias por la oportunidad. Estoy seguro/a de que puedo ______." During the debate, they present a full argument (3+ sentences) rather than just a position.</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Candidate role cards include full model answers that students can customize (swap in their own details). Limit to 2 interview questions per round instead of 3. Provide a visual reference sheet with "cualidades" vocabulary paired with images. For the video, give a simplified viewing guide with multiple-choice answers.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DAY 13 -->
+<div class="day-card">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">13</span> El subjuntivo con cl&aacute;usulas adjetivas &mdash; Introduction <span class="tag tag-gram">Grammar</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>understand when and why we use the subjunctive with adjective clauses</strong> and <strong>form basic sentences</strong> describing unknown or nonexistent people using "Se busca a alguien que..." and "No hay nadie que..."</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up &mdash; Noticing Activity (7 min):</strong> Display 3 pairs of sentences on the board (from Slide 54):<br>
+"Conozco a un muchacho que <em>juega</em> f&uacute;tbol." vs. "&iquest;Conoces a alguien que <em>juegue</em> balonmano?"<br>
+"Tengo un amigo que <em>trabaja</em> como cajero." vs. "Busco a alguien que <em>trabaje</em> como salvavidas."<br>
+Students discuss with a partner: What's different between the two sentences in each pair? Why does the verb change? Collect student hypotheses &mdash; don't correct yet.</li>
+<li><strong>Grammar Explanation with Slides 51&ndash;54 (12 min):</strong> Reveal the rule: when we describe someone/something we KNOW exists &rarr; indicative. When we describe someone/something UNKNOWN, HYPOTHETICAL, or NONEXISTENT &rarr; subjunctive. Walk through the 4 trigger phrases from the vocabulary list: &iquest;Conoces a alguien que...? / No hay nadie que... / Queremos emplear a gente que... / Se busca a alguien que... Students copy the rule and trigger phrases with examples.</li>
+<li><strong>Guided Practice &mdash; Indicative or Subjunctive? (10 min):</strong> Display 8 sentences. Students work in pairs to decide: indicative or subjunctive? Then write the correct verb form. Examples: "Conozco a una ingeniera que [saber/sepa] programar." vs. "Necesitamos a alguien que [saber/sepa] programar." Review together, discussing WHY for each.</li>
+<li><strong>Job Posting Reading (10 min):</strong> Show a sample job posting (authentic or teacher-created) that uses subjunctive naturally: "Se busca a un empleado que tenga experiencia previa y que sea responsable." Students identify all subjunctive verbs in the posting and explain why each one is subjunctive (the person doesn't exist yet &mdash; they're describing an ideal candidate).</li>
+<li><strong>Exit Ticket (6 min):</strong> Students write 2 original sentences: one using indicative (someone they know) and one using subjunctive (someone they're looking for). Frame: "Conozco a ______ que ______." / "Busco a alguien que ______."</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>Exit Ticket Analysis:</strong> The 2-sentence exit ticket is your key data point. Sort into 3 piles: (1) Gets both right &mdash; ready to move on. (2) Gets indicative right but struggles with subjunctive &mdash; needs more practice with forms. (3) Can't distinguish when to use each &mdash; needs the concept re-taught. Use this data to form flexible groups for Day 14.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>Noticing Activity &rarr; Hypothesis Building:</strong> Starting with student-generated hypotheses (rather than a teacher lecture) creates investment in the grammar concept. Partners discuss first, then share with the class. When a student gets close to the rule, celebrate it: "Almost! Let's refine that idea together." This makes grammar feel like a puzzle to solve rather than a rule to memorize. For 8th graders, the "detective" framing works well.</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> Many heritage speakers use the subjunctive intuitively. Their task: during the noticing activity, they explain to their partner WHY the verb changes (they can often articulate it naturally). For the job posting, they write 3 additional subjunctive requirements for the job. Exit ticket: write 3 sentences instead of 2, and one must use "No hay nadie que..."</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Provide a color-coded reference card: GREEN = indicative (known, real), RED = subjunctive (unknown, looking for). The guided practice includes the first 3 answers completed as models. For the exit ticket, provide sentence starters with the trigger phrase already written: "Busco a alguien que [sepa/sea/tenga] ______."</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DAY 14 -->
+<div class="day-card">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">14</span> Subjuntivo adjetival &mdash; Applied Practice <span class="tag tag-gram">Grammar</span><span class="tag tag-vocab">Vocabulary</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>use the subjunctive with adjective clauses</strong> to describe ideal job candidates and <strong>discuss what employers look for</strong> in employees, integrating workplace vocabulary.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up &mdash; Subjunctive Conjugation Drill (5 min):</strong> Rapid-fire: teacher gives an infinitive, students write the subjunctive "yo" form on whiteboards. Do 8 verbs mixing regular and stem-changers: trabajar&rarr;trabaje, tener&rarr;tenga, ser&rarr;sea, saber&rarr;sepa, poder&rarr;pueda, etc. Immediate visual feedback.</li>
+<li><strong>Flexible Groups &mdash; Based on Exit Ticket Data (15 min):</strong> Use yesterday's exit ticket to form 3 groups:<br>
+<strong>Group A (re-teach):</strong> Teacher-led small group. Reteach indicative vs. subjunctive concept using physical manipulatives: green cards = real/known, red cards = unknown/searching. Practice 6 sentences together.<br>
+<strong>Group B (practice):</strong> Independent worksheet with 10 fill-in-the-blank sentences choosing between indicative and subjunctive forms. Self-check with answer key when done.<br>
+<strong>Group C (extend):</strong> Read an authentic job posting from a Spanish-language job site. Identify all subjunctive uses, then write their OWN job posting for a dream business (preview of tomorrow's assessment).</li>
+<li><strong>Whole Class &mdash; "El empleador ideal" Discussion (12 min):</strong> Rejoin as a whole class. Teacher poses: "Ustedes son los due&ntilde;os de un restaurante nuevo. &iquest;Qu&eacute; tipo de empleado buscan?" Students brainstorm using subjunctive: "Buscamos a alguien que sea puntual." "Necesitamos un camarero que atienda bien a los clientes." "No queremos a nadie que sea perezoso." Write responses on the board, building a collaborative "ideal employee" description.</li>
+<li><strong>Mafalda Comic Analysis (8 min):</strong> Display a Mafalda comic strip related to work (Slide 50). Students read and discuss in pairs: What is the humor? What comment is Mafalda making about work/life? Does this connect to any vocabulary we've learned? Brief whole-class share.</li>
+<li><strong>Preview Assessment (5 min):</strong> Explain tomorrow's gradebook task: creating a "Se busca..." job posting. Show the model. Students begin brainstorming which job they want to create a posting for.</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>"El empleador ideal" Whiteboard Contributions:</strong> During the whole-class brainstorm, have each student write ONE sentence on a small whiteboard before sharing. This ensures everyone produces a subjunctive sentence (not just the volunteers). Scan the room for accuracy before they share aloud. Also check Group B worksheets &mdash; target 80% accuracy to confirm readiness for tomorrow's assessment.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>"El empleador ideal" Collaborative Brainstorm:</strong> This is a discourse-rich whole-class activity where every contribution uses the target grammar. Key management: require whiteboards FIRST (individual accountability), then volunteers share. Build the list on the board so students see the subjunctive pattern repeated 10+ times. For 8th graders, make it fun: "Your restaurant is about to open. You need the PERFECT team. What do you demand?" The ownership element drives engagement.</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> In the flexible group time, they work on the authentic job posting extension (Group C). During the whole-class brainstorm, they must contribute sentences using more complex structures: "Queremos emplear a gente que no solo sea puntual sino que tambi&eacute;n demuestre liderazgo." For the Mafalda comic, they write a 3-sentence analysis explaining the cultural commentary.</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> In the flexible group time, they receive small-group re-teaching (Group A). During the brainstorm, they can reference the trigger phrase list from yesterday. Provide a "subjunctive verb cheat sheet" with the 10 most common verbs already conjugated. For Mafalda, provide guided questions and allow discussion in a mix of English and Spanish.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DAY 15 -->
+<div class="day-card">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">15</span> Weekly Assessment &mdash; "Se busca..." Job Posting <span class="tag tag-assess">Gradebook</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>write a job posting</strong> for a position of my choice using the subjunctive with adjective clauses to describe the ideal candidate and workplace vocabulary to specify job requirements.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up &mdash; Model Analysis (5 min):</strong> Display the authentic job posting from the final exam reading section (the barber shop posting) or a teacher-created model. Students identify: What subjunctive phrases do you see? What vocabulary from our unit appears? This refreshes both grammar and vocabulary right before the assessment.</li>
+<li><strong>Assessment Overview &amp; Rubric (3 min):</strong> Display the rubric. Review requirements. Answer clarifying questions. Students may use vocabulary notes but NOT translators.</li>
+<li><strong>Assessment &mdash; "Se busca..." Job Posting (28 min):</strong> Students create a job posting (on Canvas text entry, Google Doc, or paper) for a job/career of their choice.<br><br>
+<em>Required elements:</em><br>
+&bull; <strong>T&iacute;tulo del puesto</strong> &mdash; Name and brief description of the job<br>
+&bull; <strong>Requisitos</strong> &mdash; At least 4 sentences using subjunctive with adjective clauses describing the ideal candidate ("Se busca a alguien que...", "Necesitamos una persona que...", "No queremos a nadie que...")<br>
+&bull; <strong>Aspectos del trabajo</strong> &mdash; Horario, turno, tipo de trabajo (medio tiempo/tiempo completo), beneficios<br>
+&bull; <strong>Funciones</strong> &mdash; At least 2 job functions the employee will perform<br>
+&bull; <strong>C&oacute;mo solicitar</strong> &mdash; Instructions for applying (send CV, attend interview, etc.)<br>
+&bull; Use at least 8 unit vocabulary words total (across all weeks)</li>
+<li><strong>Peer Review &mdash; "Would You Apply?" (6 min):</strong> Students swap postings with a partner. Partner reads and answers: "&iquest;Solicitar&iacute;as este empleo? &iquest;Por qu&eacute; s&iacute; o no?" They write a 2-sentence response on a sticky note or Canvas comment. This adds an interpersonal reading + writing element.</li>
+<li><strong>Submit &amp; Week 3 Wrap-Up (3 min):</strong> Submit to Canvas. Can-Do Statements self-check. Preview: "Next week we learn about job competencies, the future tense, and si clauses &mdash; what will happen IF you pursue your dream career!"</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title grade">&#128203; Gradebook Entry &mdash; Week 3 All-Task</div>
+<div class="grade-card">
+<h3>"Se busca..." &mdash; Job Posting with Subjunctive</h3>
+<p><strong>Mode:</strong> Presentational Writing &nbsp;|&nbsp; <strong>Time:</strong> 28 min &nbsp;|&nbsp; <strong>Points:</strong> Rubric-based (adjusted MCPS Intermediate Learner Presentational Rubric)</p>
+<p style="margin-top:8px;"><strong>Requirements:</strong> Complete job posting with 4+ subjunctive sentences, job aspects, 2+ functions, application instructions, and 8+ vocabulary words.</p>
+<div class="rubric">
+<div><strong>Task Completion:</strong> All 5 required sections present; meets vocabulary minimum (8 words across all unit weeks)</div>
+<div><strong>Subjunctive Accuracy:</strong> 4+ correct subjunctive sentences using adjective clause triggers; clear distinction from indicative</div>
+<div><strong>Vocabulary:</strong> Accurate, contextualized use of workplace, career, and function vocabulary</div>
+<div><strong>Comprehensibility &amp; Format:</strong> Reads like a realistic job posting; organized and understandable to a sympathetic reader</div>
+</div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>The posting IS the CFU for subjunctive mastery.</strong> When grading, categorize errors: (1) Uses subjunctive triggers but wrong verb form &mdash; needs conjugation practice. (2) Uses correct forms but wrong trigger context &mdash; needs concept reinforcement. (3) Avoids subjunctive entirely &mdash; needs significant re-teaching. Plan Week 4 warm-ups to address the most common error category. Also check: Are students integrating vocabulary from ALL 3 weeks, or only the most recent?</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>"Would You Apply?" Peer Review:</strong> This 6-minute activity turns a solo writing assessment into a discourse opportunity. The question "&iquest;Solicitar&iacute;as?" requires students to READ a classmate's posting carefully and formulate an opinion. Post the response frame: "S&iacute;, solicitar&iacute;a porque ______" or "No solicitar&iacute;a porque ______." This also serves as a comprehensibility check &mdash; if the reader can't understand the posting well enough to respond, that's valuable feedback.</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> Extended requirements: 6+ subjunctive sentences (including "No hay nadie que..." and "Queremos emplear a gente que..."), 10+ vocabulary words, and a closing paragraph explaining why this company is a great place to work (using indicative to contrast with the subjunctive requirements section). Peer review must include a detailed response of 4+ sentences with a counter-offer: "Yo solicitar&iacute;a, pero pedir&iacute;a ______."</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Provide a posting template with section headers and sentence starters pre-written: "Se busca a alguien que [sea/tenga/sepa] ______." Reduce to 3 subjunctive sentences and 5 vocabulary words. Allow the subjunctive verb conjugation reference card during writing. For peer review, give a simplified response frame with checkboxes: "El puesto parece: interesante / dif&iacute;cil / aburrido porque ______."</div>
+</div>
+</div>
+
+</div>
+</div>
+
+</div><!-- end container -->
+
+<footer>
+<p>Unit 3.5: El desarrollo profesional &middot; MCPS Spanish 3 &middot; Week 3 of 6</p>
+<p style="margin-top:4px;">Back-mapped from Common Tasks: Di&aacute;logo simulado, Examen final, Presentaci&oacute;n escrita, Presentaci&oacute;n oral</p>
+</footer>
+
+<script>
+document.querySelectorAll('.day-card').forEach((card,i)=>{
+  if(i>0) card.classList.remove('open');
+});
+</script>
+
+</body>
+</html>

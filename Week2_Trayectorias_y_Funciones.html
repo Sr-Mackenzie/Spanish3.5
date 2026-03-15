@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 3.5 Week 2 — Las trayectorias profesionales y las funciones del trabajo</title>
+<style>
+:root{--navy:#1a2744;--blue:#2c5282;--sky:#ebf4ff;--gold:#d69e2e;--goldlight:#fefcbf;--green:#276749;--greenlight:#c6f6d5;--red:#c53030;--redlight:#fed7d7;--purple:#553c9a;--purplelight:#e9d8fd;--gray:#718096;--graylight:#f7fafc;--white:#fff;--radius:10px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f0f4f8;color:#2d3748;line-height:1.6;}
+header{background:linear-gradient(135deg,var(--navy),var(--blue));color:var(--white);padding:28px 32px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2);}
+header h1{font-size:1.6rem;margin-bottom:4px;}
+header p{opacity:.85;font-size:.95rem;}
+.week-nav{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+.week-nav a{background:rgba(255,255,255,.15);color:var(--white);text-decoration:none;padding:6px 16px;border-radius:20px;font-size:.85rem;transition:.2s;}
+.week-nav a:hover,.week-nav a.active{background:var(--gold);color:var(--navy);font-weight:600;}
+.container{max-width:1100px;margin:0 auto;padding:24px 16px 60px;}
+.unit-overview{background:var(--white);border-radius:var(--radius);padding:24px;margin-bottom:24px;border-left:5px solid var(--gold);box-shadow:0 1px 4px rgba(0,0,0,.08);}
+.unit-overview h2{color:var(--navy);font-size:1.25rem;margin-bottom:8px;}
+.unit-overview ul{list-style:none;padding:0;}
+.unit-overview li{padding:4px 0;padding-left:20px;position:relative;}
+.unit-overview li::before{content:"▸";position:absolute;left:0;color:var(--gold);font-weight:bold;}
+.day-card{background:var(--white);border-radius:var(--radius);margin-bottom:20px;box-shadow:0 1px 6px rgba(0,0,0,.08);overflow:hidden;transition:.2s;}
+.day-card:hover{box-shadow:0 3px 12px rgba(0,0,0,.12);}
+.day-header{padding:16px 20px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none;}
+.day-header h3{font-size:1.1rem;display:flex;align-items:center;gap:10px;}
+.day-num{background:var(--blue);color:var(--white);width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;flex-shrink:0;}
+.day-header .toggle{font-size:1.3rem;color:var(--gray);transition:.3s;}
+.day-card.open .toggle{transform:rotate(180deg);}
+.day-body{display:none;padding:0 20px 20px;}
+.day-card.open .day-body{display:block;}
+.section{margin-bottom:16px;}
+.section-title{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.section-title.obj{color:var(--blue);}
+.section-title.act{color:var(--green);}
+.section-title.cfu{color:var(--gold);}
+.section-title.disc{color:var(--purple);}
+.section-title.diff{color:var(--red);}
+.section-title.grade{color:var(--red);}
+.badge{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.75rem;font-weight:600;}
+.badge-interp{background:#bee3f8;color:#2a4365;}
+.badge-interpersonal{background:#c6f6d5;color:#22543d;}
+.badge-present{background:#e9d8fd;color:#44337a;}
+.obj-box{background:var(--sky);border-radius:8px;padding:12px 16px;font-size:.95rem;}
+.obj-box strong{color:var(--blue);}
+.act-list{list-style:none;padding:0;counter-reset:act;}
+.act-list li{padding:8px 12px;background:var(--greenlight);border-radius:6px;margin-bottom:6px;padding-left:36px;position:relative;font-size:.93rem;}
+.act-list li::before{counter-increment:act;content:counter(act);position:absolute;left:10px;top:9px;background:var(--green);color:var(--white);width:20px;height:20px;border-radius:50%;font-size:.7rem;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.cfu-box{background:var(--goldlight);border-radius:8px;padding:12px 16px;font-size:.93rem;border-left:3px solid var(--gold);}
+.disc-box{background:var(--purplelight);border-radius:8px;padding:12px 16px;font-size:.93rem;border-left:3px solid var(--purple);}
+.diff-container{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:700px){.diff-container{grid-template-columns:1fr;}}
+.diff-up,.diff-down{border-radius:8px;padding:12px 16px;font-size:.9rem;}
+.diff-up{background:#fefcbf;border-left:3px solid var(--gold);}
+.diff-down{background:var(--redlight);border-left:3px solid var(--red);}
+.diff-up strong{color:#975a16;}
+.diff-down strong{color:var(--red);}
+.hw-box{background:var(--graylight);border-radius:8px;padding:12px 16px;font-size:.93rem;border-left:3px solid var(--gray);}
+.grade-card{background:linear-gradient(135deg,#fff5f5,#fed7d7);border:2px solid var(--red);border-radius:var(--radius);padding:20px;margin-top:24px;}
+.grade-card h3{color:var(--red);margin-bottom:8px;font-size:1.1rem;}
+.grade-card .rubric{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;}
+.grade-card .rubric div{background:var(--white);padding:8px 12px;border-radius:6px;font-size:.88rem;}
+.tag{display:inline-block;font-size:.7rem;padding:2px 8px;border-radius:10px;margin-left:6px;font-weight:600;}
+.tag-vocab{background:#bee3f8;color:#2a4365;}
+.tag-gram{background:#fefcbf;color:#975a16;}
+.tag-culture{background:#c6f6d5;color:#22543d;}
+.tag-assess{background:#fed7d7;color:#9b2c2c;}
+footer{text-align:center;padding:20px;color:var(--gray);font-size:.82rem;}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Unidad 3.5 — El desarrollo profesional</h1>
+<p>MCPS Spanish 3 &middot; Back-Mapped Unit Plan &middot; Montgomery County Public Schools</p>
+<nav class="week-nav">
+<a href="Week1_Trabajos_y_Presente_Perfecto.html">Week 1</a>
+<a href="Week2_Trayectorias_y_Funciones.html" class="active">Week 2</a>
+<a href="Week3_Aspectos_y_Subjuntivo_Adjetival.html">Week 3</a>
+<a href="Week4_Competencias_Futuro_SiClauses.html">Week 4</a>
+<a href="Week5_Subjuntivo_Adverbial_Pronombres.html">Week 5</a>
+<a href="Week6_Review_y_Assessments.html">Week 6</a>
+</nav>
+</header>
+
+<div class="container">
+
+<!-- WEEK OVERVIEW -->
+<div class="unit-overview">
+<h2>Week 2: Las trayectorias profesionales y las funciones del trabajo</h2>
+<p style="margin-bottom:10px;color:var(--gray);font-size:.9rem;">Focus: Explore career paths and fields of study, learn job function verbs, and connect careers to actions through discourse-heavy activities. Present perfect continues to spiral through warm-ups.</p>
+<ul>
+<li><strong>Vocabulary:</strong> Las trayectorias profesionales (abogado/a, cient&iacute;fico/a, contador/a, empresario/a, ingeniero/a, programador/a, campo, carrera militar, escuela vocacional, especializarse, sacarle provecho, tomar cursos) + Las funciones del trabajo (atender, construir, cuidar, defender, investigar, salvar)</li>
+<li><strong>Grammar:</strong> Present perfect spiral (warm-ups) + introduction of function verbs in present subjunctive context (preview)</li>
+<li><strong>Culture:</strong> Programa Juventud y Empleo (Dominican Republic), career paths in Spanish-speaking countries, study requirements</li>
+<li><strong>Modes:</strong> <span class="badge badge-interp">Interpretive</span> <span class="badge badge-interpersonal">Interpersonal</span> <span class="badge badge-present">Presentational</span></li>
+<li><strong>Weekly Gradebook Entry:</strong> Career Exploration Digital Poster &mdash; matching careers to functions with explanations (Day 5)</li>
+</ul>
+</div>
+
+<!-- DAY 6 -->
+<div class="day-card open">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">6</span> Las trayectorias profesionales &mdash; Career Paths <span class="tag tag-vocab">Vocabulary</span><span class="tag tag-culture">Culture</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>identify at least 6 career paths</strong> in Spanish and <strong>explain what field of study</strong> each career requires.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up &mdash; Presente perfecto spiral (5 min):</strong> "¿Qu&eacute; has hecho este fin de semana?" Students write 2 sentences using the present perfect. Share with a partner. Quick whole-class share (2&ndash;3 volunteers). This keeps Week 1 grammar alive.</li>
+<li><strong>Career Paths Vocabulary Introduction (12 min):</strong> Use Slides 10, 12, and 13. Present each career with its field of study: "Para ser abogado/a, estudio el campo de derecho." Students create a two-column T-chart in notebooks: Carrera | Campo de estudio. Include all 6 careers + escuela vocacional + carrera militar. Choral repetition of pronunciation for each.</li>
+<li><strong>Video: Programa Juventud y Empleo (10 min):</strong> Play the video referenced on Slide 11 (or a substitute authentic clip about youth career programs in Latin America). Before viewing, give students 3 focus questions: &iquest;Qu&eacute; carreras mencionan? &iquest;Para qui&eacute;n es el programa? &iquest;Qu&eacute; ofrece? After viewing, students discuss answers at tables before whole-class debrief.</li>
+<li><strong>"&iquest;Qu&eacute; quieres ser?" Partner Conversation (10 min):</strong> Students pair up. Each takes turns answering: "&iquest;Qu&eacute; quieres ser en el futuro?" and "Para esa carrera, &iquest;qu&eacute; necesitas estudiar?" Sentence frames on the board: "Quiero ser ______ y necesito estudiar ______. Tambi&eacute;n puedo tomar cursos de ______ para sacarle provecho." Partners must ask at least one follow-up question.</li>
+<li><strong>Vocabulary Sorting Activity (8 min):</strong> In groups of 3, students receive cut-out cards (or digital drag-and-drop on Canvas) with career names, fields of study, and brief descriptions jumbled together. They sort and match them correctly. First group finished with all correct matches earns a small reward. Review answers as a class.</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>Exit Ticket &mdash; 3-2-1:</strong> On a slip of paper or Canvas: 3 career paths you remember in Spanish, 2 fields of study that go with them, and 1 career you'd like to learn more about. Quick scan tells you who absorbed the vocabulary and who needs reinforcement.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>Partner Conversation with Required Follow-Up:</strong> The key 8th-grader management move is requiring the follow-up question. Post 3 sample follow-up questions on the board: "&iquest;Por qu&eacute; te interesa eso?" / "&iquest;Conoces a alguien que trabaje en ese campo?" / "&iquest;Qu&eacute; cursos tomar&iacute;as?" This prevents the conversation from dying after one exchange. Circulate with a clipboard and tally who is on task.</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> During partner conversation, they must explain WHY they are interested in a career using at least 3 sentences. They can also add careers not on the official list (m&eacute;dico, maestro, artista) and explain the corresponding field of study. For the video, they answer an additional inference question: "&iquest;Por qu&eacute; crees que este programa es necesario en ese pa&iacute;s?"</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Provide the T-chart partially completed (3 of 8 rows filled as models). For the partner conversation, give a full script template they can customize with their own career choice. The sorting activity includes visual icons alongside text to support comprehension.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DAY 7 -->
+<div class="day-card">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">7</span> Las funciones del trabajo &mdash; What Jobs DO <span class="tag tag-vocab">Vocabulary</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>describe what people do in different jobs</strong> using 6 function verbs (atender, construir, cuidar, defender, investigar, salvar) and <strong>match functions to specific careers</strong>.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up &mdash; Career Path Recall (5 min):</strong> Quick-draw: teacher describes a career in Spanish without naming it ("Esta persona estudia derecho y defiende a sus clientes"). Students write the career on whiteboards and hold up. Do 4&ndash;5 rounds. This reviews yesterday's vocab and previews today's function verbs.</li>
+<li><strong>Function Verbs Introduction with Slides 14&ndash;19 (15 min):</strong> Walk through each verb with the paired visuals from the unit presentation. For each verb, show it connected to TWO jobs (one current/youth job, one career): e.g., "Atender &mdash; el camarero atiende a los clientes / la contadora atiende a sus clientes." Students add to a vocabulary graphic organizer: Verbo | Significado | &iquest;Qui&eacute;n lo hace?</li>
+<li><strong>"&iquest;Qu&eacute; hace?" Guessing Game (10 min):</strong> Teacher (or a student volunteer) acts out or describes a job function without naming the career. Class guesses: "&iquest;Es alguien que cuida ni&ntilde;os? &iexcl;Es un ni&ntilde;ero!" Then transition to partner version: Student A picks a card with a function verb, describes what the person does; Student B guesses the career. Play 3 rounds each.</li>
+<li><strong>Matching Practice &mdash; Slides 21&ndash;22 (8 min):</strong> Use the practice slides from the unit presentation. Students work in pairs to match job postings to the correct career. Discuss answers as a class, emphasizing the function verbs used in each posting.</li>
+<li><strong>Quick Write (7 min):</strong> "Escribe 4 oraciones conectando una funci&oacute;n con una carrera." Model: "Un cient&iacute;fico investiga nuevas medicinas." Students write independently, then compare with a partner. Did you use the same careers? Different ones?</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>Quick Write Review:</strong> Collect or photograph the 4-sentence quick writes. Check for: (1) correct verb conjugation, (2) logical career-function pairing, (3) variety of verbs used. Students who only use 1&ndash;2 verbs may need more exposure tomorrow.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>Guessing Game with Cards:</strong> Physical cards create structure and prevent off-task behavior. Each student gets exactly 3 cards, so they know exactly how many rounds they play. The competitive element (guessing correctly) motivates participation. For reluctant speakers, the card gives them a script &mdash; they describe what's on the card rather than generating language from scratch.</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> During the guessing game, they must give 3-sentence descriptions (not just one clue). Their quick write should include 6 sentences and use at least one stem-changing verb correctly (atender &rarr; atiende, defender &rarr; defiende). Bonus: write a sentence explaining a function verb not on the list (ense&ntilde;ar, dise&ntilde;ar, programar).</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Provide the graphic organizer with the verb meanings pre-filled in English &mdash; students only need to add "&iquest;Qui&eacute;n lo hace?" For the guessing game, their cards include the description pre-written (they read it aloud). Quick write sentence frame: "Un/a ______ [verbo] ______ en su trabajo."</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DAY 8 -->
+<div class="day-card">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">8</span> Connecting Careers &amp; Functions &mdash; Discourse Day <span class="tag tag-vocab">Vocabulary</span><span class="tag tag-culture">Culture</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>discuss which careers interest me and why</strong>, explaining the functions involved, and I can <strong>compare career opportunities</strong> for youth in different countries.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up &mdash; "Descr&iacute;belo" (5 min):</strong> One student sits facing away from the board. The class sees a career name projected. They must describe the career using function verbs (no English, no cognate cheating). The seated student guesses. Do 3 rounds with different volunteers. High energy, great for 8th graders.</li>
+<li><strong>Authentic Text: "C&oacute;mo buscar empleo" (15 min):</strong> Use the video from Slide 20 or the model activity "Al momento de buscar empleo." Pre-teach 3&ndash;4 key unfamiliar words. Students read/watch, then answer 4 comprehension questions individually. Partner check: compare answers and discuss any disagreements before whole-class review.</li>
+<li><strong>Four Corners Debate (12 min):</strong> Post 4 career categories in the room's corners: Universidad, Escuela vocacional, Carrera militar, Trabajar inmediatamente. Read a scenario: "Marcos tiene 18 a&ntilde;os. Le gusta construir cosas y trabajar con las manos. &iquest;Qu&eacute; deber&iacute;a hacer?" Students move to the corner they think fits best. In their corner group, they discuss WHY for 2 minutes using sentence frames. One spokesperson shares with the class. Do 2&ndash;3 scenarios.</li>
+<li><strong>Cultural Comparison &mdash; Pair Discussion (8 min):</strong> Display a brief infographic or data comparison: career training paths in the U.S. vs. a Spanish-speaking country (e.g., the "exigencia de estudios" concept). Partners discuss: "&iquest;Qu&eacute; es diferente? &iquest;Qu&eacute; es similar? &iquest;Cu&aacute;l prefieres y por qu&eacute;?" Sentence frames posted.</li>
+<li><strong>Wrap-Up &amp; Preview (5 min):</strong> Quick review of all vocabulary covered this week so far (jobs + careers + functions). Preview tomorrow's "job fair" simulation. Students should think about which career they'd want to "represent."</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>Four Corners Observation:</strong> As students discuss in their corners, circulate and listen. Are they using function verbs? Career vocabulary? Note which students default to English or struggle to justify their choice. The authentic text comprehension questions also serve as a written check.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>Four Corners Debate:</strong> This is one of the most effective discourse strategies for 8th graders because it involves MOVEMENT. Key management: (1) Students must walk, not run. (2) Once in a corner, they have 2 minutes to prepare &mdash; set a visible timer. (3) Assign a spokesperson RANDOMLY (draw a name) so everyone prepares. (4) Limit to 2&ndash;3 scenarios to keep energy high without losing control. (5) Post the sentence frame: "Creo que Marcos deber&iacute;a ______ porque en ese campo, &eacute;l puede ______."</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> During Four Corners, they present counterarguments: "Entiendo que ustedes piensan ______, pero yo creo que ______ porque ______." For the authentic text, they write a 3-sentence personal reaction: "&iquest;Qu&eacute; consejo de este texto te parece m&aacute;s &uacute;til? &iquest;Por qu&eacute;?" Cultural comparison: they draw on family experience to add authentic perspectives.</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> For Four Corners, provide a "cheat sheet" with one argument per corner pre-written that students can reference. The authentic text includes a glossary sidebar. During the cultural comparison, provide a Venn diagram template with 2 similarities already filled in as models.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DAY 9 -->
+<div class="day-card">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">9</span> Mini Feria de Empleo &mdash; Simulated Job Fair <span class="tag tag-vocab">Vocabulary</span><span class="tag tag-culture">Culture</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>present information about a career</strong> (functions, study requirements, and why it matters) and <strong>ask and answer questions</strong> about different careers in a simulated job fair setting.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up &mdash; Prep Time (7 min):</strong> Students were told yesterday to think about a career. Now they have 7 minutes to prepare a small "booth" &mdash; a single sheet of paper or a quick Google Slide with: the career name, the field of study, 2 functions of the job, and one reason it appeals to them. Everything in Spanish.</li>
+<li><strong>Mini Feria de Empleo &mdash; Round 1 (12 min):</strong> Half the class stands at their "booths" (desks). The other half circulates. Visitors must ask at least 2 questions at each booth: "&iquest;Qu&eacute; hace un/a ______?" and "&iquest;Qu&eacute; necesitas estudiar?" Booth holders present their career and answer questions. Visitors take notes on a "Feria" recording sheet: career, function, and one interesting detail.</li>
+<li><strong>Mini Feria de Empleo &mdash; Round 2 (12 min):</strong> Switch roles. New booth holders, new visitors. Same structure. By the end, every student has both presented AND visited multiple booths.</li>
+<li><strong>Debrief &amp; Share (8 min):</strong> Back in seats. Whole-class discussion: "&iquest;Qu&eacute; carrera te pareci&oacute; m&aacute;s interesante de las que visitaste? &iquest;Por qu&eacute;?" 4&ndash;5 students share. Teacher highlights strong vocabulary use heard during the fair.</li>
+<li><strong>Preview Assessment (6 min):</strong> Introduce tomorrow's gradebook assignment: a Career Exploration Digital Poster. Explain expectations: pick one career, explain its functions, study requirements, and personal connection. Show a brief model. Students begin brainstorming their career choice.</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>Feria Recording Sheet:</strong> Collect the recording sheets at the end. These show you: (1) How many booths each student visited (engagement), (2) Whether they recorded accurate information (comprehension), (3) Quality of the "interesting detail" (depth of interaction). Students who visited fewer than 3 booths may need engagement support.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>Simulated Job Fair &mdash; Structured Rotation:</strong> This is PEAK discourse. Every student speaks in every round. Management keys: (1) Assign booth positions &mdash; don't let students choose or they'll cluster with friends. (2) Use a bell/timer to signal rotations every 3 minutes. (3) The recording sheet creates accountability &mdash; they must write something at each booth. (4) Post required questions on the board so visitors always have something to ask. (5) Walk the room with a positive feedback tally: "I heard great Spanish at Table 4!"</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> Their booth presentation must include 4+ functions and a comparison to how this career works in their heritage country. As visitors, they ask higher-order follow-up questions: "&iquest;Cu&aacute;les son los retos de esa carrera?" and "&iquest;Qu&eacute; competencias necesitas?" (previewing Week 4 vocabulary). They also serve as "language consultants" &mdash; classmates can ask them vocabulary questions during the fair.</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Provide a booth template with fill-in-the-blank structure: "Mi carrera es ______. Para ser ______, necesito estudiar ______. En este trabajo, una persona [verbo] ______. Me interesa porque ______." As visitors, their recording sheet has the questions pre-printed, and they circle/check off responses rather than writing from scratch.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DAY 10 -->
+<div class="day-card">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">10</span> Weekly Assessment &mdash; Career Exploration Poster <span class="tag tag-assess">Gradebook</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>create a digital poster about a career</strong> that includes the career path, field of study, job functions, and a personal connection, using vocabulary from Weeks 1&ndash;2 accurately.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up &mdash; Vocabulary Review Blitz (5 min):</strong> Rapid-fire: teacher says a definition or function in Spanish, students write the matching vocabulary word. 8 items covering both weeks of vocabulary. Not collected &mdash; confidence builder before the assessment.</li>
+<li><strong>Assessment Overview &amp; Model (5 min):</strong> Display the rubric and a model poster (1 Google Slide or Canva template). Walk through each required section. Answer clarifying questions. Remind students: all content must be in Spanish. They may use their vocabulary notes but NOT Google Translate.</li>
+<li><strong>Digital Poster Creation (28 min):</strong> Students create a 1-page digital poster (Google Slides or Canva on Chromebooks) about a career of their choice. <br><br><em>Required sections:</em><br>
+&bull; <strong>La carrera:</strong> Name of the career and an image<br>
+&bull; <strong>El campo de estudio:</strong> What you need to study and where (universidad, escuela vocacional, etc.)<br>
+&bull; <strong>Las funciones:</strong> At least 3 things this professional does (using function verbs)<br>
+&bull; <strong>Conexi&oacute;n personal:</strong> Why this career interests you (3+ sentences using present perfect: "He aprendido que..." "Siempre he querido...")<br>
+&bull; <strong>Vocabulario bonus:</strong> Use at least 5 unit vocabulary words total, highlighted or underlined</li>
+<li><strong>Peer Gallery &amp; Feedback (5 min):</strong> Students share their poster link with one partner. Partner writes one "glow" (something strong) and one "grow" (a suggestion) in Spanish on a sticky note or Canvas comment.</li>
+<li><strong>Submit &amp; Week 2 Wrap-Up (2 min):</strong> Submit to Canvas. Quick Can-Do self-check. Preview Week 3: "Next week we dive into the hiring process and learn a new grammar structure &mdash; the subjunctive!"</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title grade">&#128203; Gradebook Entry &mdash; Week 2 All-Task</div>
+<div class="grade-card">
+<h3>"Explora una carrera" &mdash; Career Exploration Digital Poster</h3>
+<p><strong>Mode:</strong> Presentational Writing &nbsp;|&nbsp; <strong>Time:</strong> 28 min &nbsp;|&nbsp; <strong>Points:</strong> Rubric-based (adjusted MCPS Intermediate Learner Presentational Rubric)</p>
+<p style="margin-top:8px;"><strong>Requirements:</strong> 1-page digital poster with career name, field of study, 3+ job functions, personal connection (3+ sentences with present perfect), and 5+ vocabulary words.</p>
+<div class="rubric">
+<div><strong>Task Completion:</strong> All 4 required sections present; meets vocabulary minimum (5 words)</div>
+<div><strong>Vocabulary:</strong> Accurate use of career paths, function verbs, and job-related terms in context</div>
+<div><strong>Grammar:</strong> Correct use of present perfect in personal connection section; overall verb accuracy</div>
+<div><strong>Comprehensibility &amp; Presentation:</strong> Clear, organized poster understandable to a sympathetic reader; visual supports enhance meaning</div>
+</div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>The poster IS the CFU.</strong> When grading, look for: (1) Are students choosing logical function verbs for their career? (2) Do they understand the difference between "campo" and "carrera"? (3) Is the present perfect used correctly in the personal connection section? (4) Common errors to address in Week 3 warm-ups. Students below expectations get a brief re-teaching session during Week 3 Day 1 warm-up.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>Peer Gallery with Structured Feedback:</strong> Even on assessment day, the 5-minute peer feedback window adds an interpersonal micro-task. Require the "glow" and "grow" to be in Spanish. Post sentence frames: "Me gusta que incluyeste ______" (glow) and "Podr&iacute;as a&ntilde;adir m&aacute;s sobre ______" (grow). This keeps early finishers engaged and adds a reading comprehension layer as they interpret a classmate's poster.</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> Extended requirements: 5+ functions (not just 3), personal connection must be 5+ sentences and include a comparison to how this career is pursued in their heritage country. Must use at least 2 vocabulary words from the "additional" list (emprender, desempe&ntilde;ar, sacarle provecho). Peer feedback must include a substantive question about the career.</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Provide a poster template with labeled sections and sentence starters already in place: "Mi carrera es ______. Para ser ______, necesito estudiar ______. Un/a ______ [verbo 1] ______. Tambi&eacute;n [verbo 2] ______. Me interesa porque he ______." Reduce function verb requirement to 2. Allow vocabulary reference sheet during creation.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+</div><!-- end container -->
+
+<footer>
+<p>Unit 3.5: El desarrollo profesional &middot; MCPS Spanish 3 &middot; Week 2 of 6</p>
+<p style="margin-top:4px;">Back-mapped from Common Tasks: Di&aacute;logo simulado, Examen final, Presentaci&oacute;n escrita, Presentaci&oacute;n oral</p>
+</footer>
+
+<script>
+document.querySelectorAll('.day-card').forEach((card,i)=>{
+  if(i>0) card.classList.remove('open');
+});
+</script>
+
+</body>
+</html>

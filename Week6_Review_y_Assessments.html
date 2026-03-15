@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 3.5 Week 6 — Review & Summative Assessments</title>
+<style>
+:root{--navy:#1a2744;--blue:#2c5282;--sky:#ebf4ff;--gold:#d69e2e;--goldlight:#fefcbf;--green:#276749;--greenlight:#c6f6d5;--red:#c53030;--redlight:#fed7d7;--purple:#553c9a;--purplelight:#e9d8fd;--gray:#718096;--graylight:#f7fafc;--white:#fff;--radius:10px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f0f4f8;color:#2d3748;line-height:1.6;}
+header{background:linear-gradient(135deg,var(--navy),var(--blue));color:var(--white);padding:28px 32px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2);}
+header h1{font-size:1.6rem;margin-bottom:4px;}
+header p{opacity:.85;font-size:.95rem;}
+.week-nav{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+.week-nav a{background:rgba(255,255,255,.15);color:var(--white);text-decoration:none;padding:6px 16px;border-radius:20px;font-size:.85rem;transition:.2s;}
+.week-nav a:hover,.week-nav a.active{background:var(--gold);color:var(--navy);font-weight:600;}
+.container{max-width:1100px;margin:0 auto;padding:24px 16px 60px;}
+.unit-overview{background:var(--white);border-radius:var(--radius);padding:24px;margin-bottom:24px;border-left:5px solid var(--gold);box-shadow:0 1px 4px rgba(0,0,0,.08);}
+.unit-overview h2{color:var(--navy);font-size:1.25rem;margin-bottom:8px;}
+.unit-overview ul{list-style:none;padding:0;}
+.unit-overview li{padding:4px 0;padding-left:20px;position:relative;}
+.unit-overview li::before{content:"▸";position:absolute;left:0;color:var(--gold);font-weight:bold;}
+.day-card{background:var(--white);border-radius:var(--radius);margin-bottom:20px;box-shadow:0 1px 6px rgba(0,0,0,.08);overflow:hidden;transition:.2s;}
+.day-card:hover{box-shadow:0 3px 12px rgba(0,0,0,.12);}
+.day-header{padding:16px 20px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none;}
+.day-header h3{font-size:1.1rem;display:flex;align-items:center;gap:10px;}
+.day-num{background:var(--blue);color:var(--white);width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;flex-shrink:0;}
+.day-header .toggle{font-size:1.3rem;color:var(--gray);transition:.3s;}
+.day-card.open .toggle{transform:rotate(180deg);}
+.day-body{display:none;padding:0 20px 20px;}
+.day-card.open .day-body{display:block;}
+.section{margin-bottom:16px;}
+.section-title{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.section-title.obj{color:var(--blue);}
+.section-title.act{color:var(--green);}
+.section-title.cfu{color:var(--gold);}
+.section-title.disc{color:var(--purple);}
+.section-title.diff{color:var(--red);}
+.section-title.grade{color:var(--red);}
+.obj-box{background:var(--sky);border-radius:8px;padding:12px 16px;font-size:.95rem;}
+.obj-box strong{color:var(--blue);}
+.act-list{list-style:none;padding:0;counter-reset:act;}
+.act-list li{padding:8px 12px;background:var(--greenlight);border-radius:6px;margin-bottom:6px;padding-left:36px;position:relative;font-size:.93rem;}
+.act-list li::before{counter-increment:act;content:counter(act);position:absolute;left:10px;top:9px;background:var(--green);color:var(--white);width:20px;height:20px;border-radius:50%;font-size:.7rem;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.cfu-box{background:var(--goldlight);border-radius:8px;padding:12px 16px;font-size:.93rem;border-left:3px solid var(--gold);}
+.disc-box{background:var(--purplelight);border-radius:8px;padding:12px 16px;font-size:.93rem;border-left:3px solid var(--purple);}
+.diff-container{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:700px){.diff-container{grid-template-columns:1fr;}}
+.diff-up,.diff-down{border-radius:8px;padding:12px 16px;font-size:.9rem;}
+.diff-up{background:#fefcbf;border-left:3px solid var(--gold);}
+.diff-down{background:var(--redlight);border-left:3px solid var(--red);}
+.diff-up strong{color:#975a16;}
+.diff-down strong{color:var(--red);}
+.grade-card{background:linear-gradient(135deg,#fff5f5,#fed7d7);border:2px solid var(--red);border-radius:var(--radius);padding:20px;margin-top:24px;}
+.grade-card h3{color:var(--red);margin-bottom:8px;font-size:1.1rem;}
+.grade-card .rubric{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;}
+.grade-card .rubric div{background:var(--white);padding:8px 12px;border-radius:6px;font-size:.88rem;}
+.tag{display:inline-block;font-size:.7rem;padding:2px 8px;border-radius:10px;margin-left:6px;font-weight:600;}
+.tag-vocab{background:#bee3f8;color:#2a4365;}
+.tag-gram{background:#fefcbf;color:#975a16;}
+.tag-culture{background:#c6f6d5;color:#22543d;}
+.tag-assess{background:#fed7d7;color:#9b2c2c;}
+.tag-review{background:#e9d8fd;color:#44337a;}
+.exam-section{background:var(--graylight);border-radius:8px;padding:14px 16px;margin-bottom:8px;border-left:3px solid var(--blue);}
+.exam-section h4{color:var(--blue);margin-bottom:4px;font-size:.95rem;}
+.exam-section p{font-size:.9rem;}
+footer{text-align:center;padding:20px;color:var(--gray);font-size:.82rem;}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Unidad 3.5 &mdash; El desarrollo profesional</h1>
+<p>MCPS Spanish 3 &middot; Back-Mapped Unit Plan &middot; Montgomery County Public Schools</p>
+<nav class="week-nav">
+<a href="Week1_Trabajos_y_Presente_Perfecto.html">Week 1</a>
+<a href="Week2_Trayectorias_y_Funciones.html">Week 2</a>
+<a href="Week3_Aspectos_y_Subjuntivo_Adjetival.html">Week 3</a>
+<a href="Week4_Competencias_Futuro_SiClauses.html">Week 4</a>
+<a href="Week5_Subjuntivo_Adverbial_Pronombres.html">Week 5</a>
+<a href="Week6_Review_y_Assessments.html" class="active">Week 6</a>
+</nav>
+</header>
+
+<div class="container">
+
+<!-- WEEK OVERVIEW -->
+<div class="unit-overview">
+<h2>Week 6: Review &amp; Summative Assessments</h2>
+<p style="margin-bottom:10px;color:var(--gray);font-size:.9rem;">Focus: Comprehensive review of all unit vocabulary and grammar, administer the Di&aacute;logo simulado (interpersonal speaking assessment) and the Examen final (summative written assessment). Bring everything together and celebrate student growth.</p>
+<ul>
+<li><strong>Review:</strong> All vocabulary categories (trabajos actuales, trayectorias, funciones, aspectos, competencias, adjetivos) + All grammar (presente perfecto, subjuntivo adj. + adv., futuro simple, si clauses, pronombres relativos)</li>
+<li><strong>Assessments:</strong> Di&aacute;logo simulado (Common Task &mdash; interpersonal) + Examen final (Common Task &mdash; 40 pts: listening, vocabulary, reading, grammar, writing)</li>
+<li><strong>Modes:</strong> <span class="badge badge-interp">Interpretive</span> <span class="badge badge-interpersonal">Interpersonal</span> <span class="badge badge-present">Presentational</span></li>
+<li><strong>Weekly Gradebook Entry:</strong> Examen final &mdash; 40-point summative assessment (Day 30)</li>
+</ul>
+</div>
+
+<!-- DAY 26 -->
+<div class="day-card open">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">26</span> Comprehensive Vocabulary Review <span class="tag tag-review">Review</span><span class="tag tag-vocab">Vocabulary</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>demonstrate knowledge of all unit vocabulary</strong> across 6 categories and <strong>use vocabulary words accurately in context</strong> through review activities.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up &mdash; Vocabulary Brain Dump (5 min):</strong> Students have 3 minutes to write as many unit vocabulary words as they can remember &mdash; no notes, no help. Then partner share: compare lists and add words you forgot. Teacher tallies: "Who got 10? 15? 20?" Celebrate top scores. This reveals what's been retained and what needs review.</li>
+<li><strong>Station Review &mdash; Vocabulary Carousel (25 min):</strong> Set up 6 stations, one per vocabulary category. Groups rotate every 4 minutes. Each station has a different activity format:<br><br>
+<strong>Station 1 &mdash; Los trabajos actuales:</strong> Image matching &mdash; match 5 images to Spanish job names and write one sentence for each.<br>
+<strong>Station 2 &mdash; Las trayectorias profesionales:</strong> Career-field matching &mdash; draw lines connecting careers to their fields of study, then explain one match to your group.<br>
+<strong>Station 3 &mdash; Las funciones del trabajo:</strong> Charades &mdash; one person acts out the verb, group guesses in Spanish. Record 4 successful guesses on paper.<br>
+<strong>Station 4 &mdash; Los aspectos del trabajo:</strong> Hiring process sequencing &mdash; put 8 vocabulary cards in logical order from application to first day. Write the sequence.<br>
+<strong>Station 5 &mdash; La competencia laboral:</strong> "Would you hire this person?" &mdash; read 3 candidate profiles and rank using competency vocabulary. Justify in writing.<br>
+<strong>Station 6 &mdash; Los adjetivos:</strong> Sentence creation &mdash; write 6 sentences, each using a different adjective to describe a career. Share your best sentence with the group.</li>
+<li><strong>Whole-Class &mdash; "Desaf&iacute;o final de vocabulario" (10 min):</strong> Team quiz game. Split class into 4 teams. Teacher reads a definition or context clue in Spanish; teams race to write the correct vocabulary word on whiteboards. 15 rapid-fire rounds. Winning team earns bragging rights.</li>
+<li><strong>Wrap-Up &amp; Preview (5 min):</strong> Distribute a vocabulary study guide (or post on Canvas). Preview tomorrow: grammar review. Encourage students to review at home tonight &mdash; the di&aacute;logo simulado is on Day 28.</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>Brain Dump + Station Recording Sheets + Team Quiz:</strong> The brain dump tells you overall retention. Station recording sheets show category-specific gaps. The team quiz confirms vocabulary under pressure. Together, these three data points let you identify exactly which categories need a quick re-teach in tomorrow's warm-up before moving to grammar review.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>Vocabulary Carousel with Mixed Activity Types:</strong> Every station involves talking &mdash; charades require verbal guessing, ranking requires justification, sequencing requires negotiation. The variety prevents the review from feeling like a boring study session. Management: (1) Groups of 4&ndash;5. (2) Assign a "station manager" in each group who keeps the group on task. (3) Use a loud, clear timer/bell. (4) The team quiz at the end adds a competitive finish that channels 8th-grade energy productively.</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> At each station, they complete the standard task plus serve as "vocabulary coaches" &mdash; when groupmates struggle, they give Spanish-only hints (not translations). During the team quiz, they answer with a full sentence, not just the word. After the carousel, they write a paragraph connecting vocabulary from 3+ categories in one coherent narrative about a career scenario.</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Allow the vocabulary list as a reference during stations (they'll need to produce without it on the exam, but today is review). Station activities include visual supports and word banks. During the team quiz, these students can be strategic team members who hold the word list &mdash; they still participate by helping locate and confirm answers. Provide a take-home study guide organized by category with English translations.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DAY 27 -->
+<div class="day-card">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">27</span> Comprehensive Grammar Review + Di&aacute;logo Prep <span class="tag tag-review">Review</span><span class="tag tag-gram">Grammar</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>distinguish between and correctly form</strong> all unit grammar structures (present perfect, subjunctive with adj. + adv. clauses, future simple, si clauses, relative pronouns) and <strong>practice for the di&aacute;logo simulado</strong>.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up &mdash; Top Vocabulary Gaps (5 min):</strong> Based on yesterday's data, quickly re-teach the 5 vocabulary words students struggled with most. Flash image, say the word, use in a sentence, students repeat. 1 minute per word.</li>
+<li><strong>Grammar Structure Sort (12 min):</strong> Students receive 15 sentence cards. In pairs, they sort them into 6 piles by grammar structure: presente perfecto, subjuntivo con cl&aacute;usulas adjetivas, subjuntivo con cl&aacute;usulas adverbiales, futuro simple, si clauses, pronombres relativos. Then they identify the KEY SIGNAL in each sentence that tells them which structure it is. Review together: "What made you put this sentence in the subjunctive pile?"</li>
+<li><strong>Grammar Repair Shop (10 min):</strong> Display 10 sentences with grammar errors (one or two from each structure). Students work independently to identify and correct each error. Partner check. Whole-class review of the 3 trickiest items. Common errors to include: future tense in the si clause, indicative after "Se busca a alguien que...", wrong relative pronoun, missing accent on future tense.</li>
+<li><strong>Di&aacute;logo Simulado Prep &amp; Practice (15 min):</strong> Distribute the di&aacute;logo simulado outline (from the Common Task document). Read through the 7 counselor prompts as a class. Discuss: What grammar and vocabulary would be strongest for each response? Then practice in pairs: Student A reads the counselor lines, Student B responds. Switch. This is a REHEARSAL, not an assessment &mdash; notes are allowed today.</li>
+<li><strong>Wrap-Up (3 min):</strong> Remind students: tomorrow is the di&aacute;logo simulado recording. No notes allowed. Review the process: 2 minutes to read, then record, then switch roles. Encourage students to review the conversation outline and vocabulary tonight.</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>Grammar Sort + Repair Shop:</strong> The sort activity reveals whether students can RECOGNIZE structures (interpretive grammar). The repair shop reveals whether they can CORRECT errors (metalinguistic awareness). Together, these prepare them for the grammar section of the examen final. If more than 30% of students mis-sort a particular structure, do a 2-minute mini-reteach before moving on.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>Di&aacute;logo Simulado Rehearsal:</strong> Tomorrow is the real recording, so today's practice is crucial. Management: (1) Pair students with someone DIFFERENT from their Week 4 recording partner so they experience a fresh conversation dynamic. (2) Allow notes today so students build confidence. (3) After the first round, pause and share 2&ndash;3 strong response strategies you overheard. (4) Second round: encourage students to try WITHOUT notes for at least 2 of the 7 prompts. This gradual release builds readiness.</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> Grammar sort: they complete the sort AND write one original sentence for each structure they didn't have an example of. During di&aacute;logo practice, they respond entirely without notes and add elaboration beyond what the prompt requires. They also help the teacher identify and explain tricky grammar points during the repair shop review.</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Grammar sort: provide a "cheat sheet" with the key signal for each structure (e.g., "Look for 'he/has/ha' = present perfect"). Repair shop: highlight which part of each sentence contains the error. During di&aacute;logo practice, allow full use of notes and the vocabulary list. Provide a response planning sheet where they can outline key words for each of the 7 prompts (they can study this tonight but won't have it tomorrow).</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DAY 28 -->
+<div class="day-card">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">28</span> Di&aacute;logo Simulado &mdash; Common Task Assessment <span class="tag tag-assess">Gradebook</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>sustain a conversation with a school counselor</strong> about my classes, future career plans, necessary steps, skills, job opportunities, and preparation &mdash; responding to 7 prompts in Spanish without notes.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up &mdash; Confidence Builder (5 min):</strong> Quick partner share: "Tell your partner 3 vocabulary words and 1 grammar structure you feel confident about." Positive framing reduces test anxiety. Then 1 minute of silent visualization: imagine yourself in the counselor's office answering confidently.</li>
+<li><strong>Assessment Setup (5 min):</strong> Review the procedure from the Common Task document: (1) Assign pairs. (2) Distribute the di&aacute;logo simulado outline. (3) Assign roles: Estudiante A reads counselor lines, Estudiante B responds. (4) 2 minutes to read and think &mdash; NO notes, NO writing. (5) Begin recording. (6) After completing all 7 exchanges, switch roles and repeat.</li>
+<li><strong>Silent Reading &amp; Thinking Time (2 min):</strong> Students read the dialogue outline silently. No writing. Timer visible.</li>
+<li><strong>Recording &mdash; Round 1 (10 min):</strong> Estudiante A reads each counselor prompt. Estudiante B has 15 seconds to respond in Spanish in complete sentences. Record the full conversation on Chromebooks (Canvas, Vocaroo, or recording tool).<br><br>
+<em>Di&aacute;logo prompts (from Common Task):</em><br>
+1. &iexcl;Hola! &iquest;Qu&eacute; tal las clases este semestre?<br>
+2. Y hasta ahora, &iquest;cu&aacute;l ha sido una clase que le has sacado provecho?<br>
+3. Pensemos ahora en el futuro&hellip; despu&eacute;s de graduarte, &iquest;qu&eacute; piensas hacer de profesi&oacute;n?<br>
+4. Muy bien, &iquest;y qu&eacute; pasos vas a tomar para esta trayectoria?<br>
+5. Es un buen plan. &iquest;Cu&aacute;les son las caracter&iacute;sticas y habilidades necesarias para este trabajo?<br>
+6. Y en el futuro, &iquest;d&oacute;nde encontrar&aacute;s oportunidades de trabajo en este campo?<br>
+7. Muy bien. Una pregunta m&aacute;s&hellip; &iquest;qu&eacute; tipo de pr&aacute;ctica har&aacute;s para prepararte?</li>
+<li><strong>Recording &mdash; Round 2 (10 min):</strong> Switch roles. New recording. Same process.</li>
+<li><strong>Save &amp; Submit (3 min):</strong> Students confirm recordings are saved and submit to Canvas/Google Classroom. Collect the di&aacute;logo outline papers.</li>
+<li><strong>Debrief &amp; Exam Preview (10 min):</strong> Brief class discussion: "&iquest;C&oacute;mo les fue?" (no specific content &mdash; just feelings). Then transition to exam preview: distribute a brief study guide outlining what's on the examen final (5 sections, 40 points). Review the format of each section. Encourage students to study vocabulary, grammar, and practice listening tonight.</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title grade">&#128203; Di&aacute;logo Simulado &mdash; Common Task (Interpersonal Speaking)</div>
+<div class="grade-card">
+<h3>Di&aacute;logo simulado &mdash; Counselor Conversation</h3>
+<p><strong>Mode:</strong> Interpersonal Speaking &nbsp;|&nbsp; <strong>Time:</strong> ~15 min total (both roles) &nbsp;|&nbsp; <strong>Scored with:</strong> MCPS Intermediate Learner Interpersonal Rubric</p>
+<p style="margin-top:8px;"><strong>Requirements:</strong> Respond to 7 counselor prompts without notes. Demonstrate use of unit vocabulary and grammar in sustained, comprehensible conversation.</p>
+<div class="rubric">
+<div><strong>Language Function:</strong> Maintains conversation through all 7 exchanges; responses are relevant and connected to prompts</div>
+<div><strong>Vocabulary:</strong> Uses career, competency, and workplace vocabulary accurately and in context across responses</div>
+<div><strong>Grammar:</strong> Demonstrates present perfect, subjunctive, future, si clauses, and/or relative pronouns appropriately</div>
+<div><strong>Communication Strategies:</strong> Sustains interaction naturally; comprehensible pronunciation; responds within time frame; self-corrects when needed</div>
+</div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>The di&aacute;logo IS the interpersonal speaking CFU.</strong> When scoring, note: (1) Which prompts generated the strongest responses? (usually #1 and #3 &mdash; most practiced). (2) Which prompts caused the most hesitation? (usually #5 and #7 &mdash; require competency vocabulary and specific plans). (3) Are students using grammar structures spontaneously or only when the prompt requires it? This data informs your feedback and helps you adjust instruction for future units.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>The assessment IS the discourse activity.</strong> Every student participates in a sustained 7-exchange conversation &mdash; twice (once in each role). Management: (1) Stagger if devices are limited. (2) While pairs record, other students can quietly review for the examen final. (3) Headphones help reduce distraction if multiple pairs record simultaneously. (4) The counselor role is also valuable practice &mdash; reading aloud in Spanish with appropriate intonation and pacing.</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> Responses should be 2&ndash;3 sentences per prompt (not just one). They should naturally integrate multiple grammar structures per response and demonstrate sophisticated vocabulary. Scoring emphasizes depth, elaboration, and natural flow over basic comprehensibility. Their counselor reading should model natural conversational Spanish intonation.</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Allow 20 seconds per response instead of 15. Scoring emphasizes comprehensibility &mdash; can the message be understood even with grammar errors? If a student freezes on a prompt, the counselor partner can rephrase or give a brief hint (this is noted on the rubric but doesn't disqualify the response). Consider allowing these students to record in a quieter space if classroom noise causes anxiety.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DAY 29 -->
+<div class="day-card">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">29</span> Final Exam Review &amp; Preparation <span class="tag tag-review">Review</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>review all unit content in preparation for the examen final</strong> by practicing listening comprehension, vocabulary in context, reading comprehension, grammar application, and presentational writing.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up &mdash; Listening Practice (7 min):</strong> Play a short authentic audio clip in Spanish about work/careers (different from the exam audio). Students answer 3 comprehension questions. Review answers. Discuss listening strategies: focus on key words, don't try to understand every word, listen for the main idea first, then details.</li>
+<li><strong>Exam Format Walk-Through (5 min):</strong> Review each section of the examen final so students know exactly what to expect:<br>
+<div class="exam-section"><h4>I. Comprensi&oacute;n auditiva (5 pts)</h4><p>Listen to an audio clip and answer 5 multiple-choice questions. Tip: read the questions BEFORE listening.</p></div>
+<div class="exam-section"><h4>II. Vocabulario (9 pts)</h4><p>Match 9 counselor statements to images. Tip: look for key vocabulary in each statement to match.</p></div>
+<div class="exam-section"><h4>III. Lectura (6 pts)</h4><p>Read an authentic job posting and answer 6 comprehension questions. Tip: scan the posting first for familiar vocabulary.</p></div>
+<div class="exam-section"><h4>IV. Gram&aacute;tica (10 pts)</h4><p>Complete two professional messages choosing correct grammar forms (subjunctive, present perfect, conditional, etc.). Tip: identify the trigger that tells you which structure to use.</p></div>
+<div class="exam-section"><h4>V. Escritura (10 pts)</h4><p>Write an email to your counselor about post-graduation plans. Tip: use the checklist provided and hit every required element.</p></div>
+</li>
+<li><strong>Practice Stations &mdash; Exam Section Prep (25 min):</strong> Students choose which sections they need the most practice on and rotate between 4 self-paced stations (5&ndash;7 min each):<br><br>
+<strong>Station A &mdash; Listening:</strong> Chromebook with a practice audio clip and questions (self-check with answer key).<br>
+<strong>Station B &mdash; Vocabulary &amp; Reading:</strong> A sample job posting with 5 comprehension questions plus vocabulary matching practice.<br>
+<strong>Station C &mdash; Grammar:</strong> 10 fill-in-the-blank items mixing all grammar structures with answer key for self-check.<br>
+<strong>Station D &mdash; Writing:</strong> Practice prompt: write a 5-sentence email to a counselor using a checklist of required elements. Peer review with a partner at the station.</li>
+<li><strong>Final Questions &amp; Confidence Check (8 min):</strong> Open Q&amp;A: students ask any remaining questions. Then a final Can-Do Statements self-assessment. Compare to Week 1 self-assessment: "Look how far you've come!" Celebrate growth. Remind: exam tomorrow, bring a charged Chromebook, get good sleep.</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>Student Self-Selection at Stations:</strong> Where students choose to spend their time tells you what they feel least confident about. Note which stations are most popular &mdash; that's the area of greatest uncertainty. If one station is empty (e.g., nobody goes to listening), that suggests the class feels confident there. If one station is overcrowded, consider doing a quick whole-class mini-lesson on that topic before dismissal.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>Self-Paced Stations with Peer Support:</strong> Students choose their own path, which builds autonomy. At each station, they work with whoever else is there, creating natural peer tutoring. Station D (writing) includes built-in peer review. Management: (1) Max 8 students per station at a time. (2) Post a visible timer and suggest moving every 6 minutes. (3) If a station is full, go to your second choice and come back. (4) The open Q&amp;A at the end lets the whole class benefit from individual questions.</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> Direct them to Station D (writing) to practice the extended email format, since writing accuracy is their growth area. Challenge: write the full email response from the exam prompt under timed conditions (10 minutes). They can also serve as peer tutors at other stations, explaining concepts in Spanish to classmates.</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Direct them to the stations they need most. Provide a personalized "study priority" card based on their performance throughout the unit (e.g., "Focus on: subjunctive triggers, competency vocabulary, future tense irregulars"). Station answer keys let them self-correct immediately. If time allows, pull a small group for a 5-minute targeted grammar review on their weakest structure.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DAY 30 -->
+<div class="day-card">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">30</span> Examen Final &mdash; Summative Assessment <span class="tag tag-assess">Gradebook</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>demonstrate my understanding of unit vocabulary and grammar</strong> through listening, reading, grammar application, and writing about my career plans and the professional world.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up &amp; Settling In (3 min):</strong> Brief, calming warm-up: "Escribe 3 cosas que aprendiste en esta unidad." Not collected &mdash; just a mental warm-up. Play quiet instrumental music for 2 minutes while students settle. Set a positive tone: "You've worked hard for 6 weeks. Show what you know."</li>
+<li><strong>Distribute Exam &amp; Administer Listening Section (10 min):</strong> Distribute exam papers. Read the listening section instructions. Play the audio clip from the Common Task (T&iacute;a Claudia's monologue about work-life balance) TWICE. Students answer questions 1&ndash;5 during and after listening. Collect or have students mark the end of the listening section.</li>
+<li><strong>Independent Exam Work: Sections II&ndash;V (30 min):</strong> Students complete the remaining sections at their own pace:<br><br>
+<strong>II. Vocabulario (9 pts):</strong> Match counselor statements to images<br>
+<strong>III. Lectura (6 pts):</strong> Read job posting, answer 6 questions<br>
+<strong>IV. Gram&aacute;tica (10 pts):</strong> Complete professional messages with correct verb forms<br>
+<strong>V. Escritura (10 pts):</strong> Write an email to a counselor about post-graduation plans including: greeting, future plans, important job aspects, competencies and training, farewell, and unit vocabulary/grammar<br><br>
+Teacher monitors the room. As students finish, they review their answers quietly, then read independently or work on an extension activity.</li>
+<li><strong>Collect &amp; Unit Celebration (2 min):</strong> Collect all exams. Brief class acknowledgment: "You just completed a full unit in Spanish about your professional future. You can now talk about careers, job competencies, and your plans &mdash; in another language. That's a real accomplishment."</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title grade">&#128203; Gradebook Entry &mdash; Week 6 All-Task</div>
+<div class="grade-card">
+<h3>Examen final &mdash; Unidad 3.5: El desarrollo profesional</h3>
+<p><strong>Modes:</strong> Interpretive Listening + Interpretive Reading + Presentational Writing &nbsp;|&nbsp; <strong>Time:</strong> 45 min &nbsp;|&nbsp; <strong>Total:</strong> 40 points</p>
+<p style="margin-top:8px;"><strong>Breakdown:</strong> I. Listening (5 pts) &bull; II. Vocabulary (9 pts) &bull; III. Reading (6 pts) &bull; IV. Grammar (10 pts) &bull; V. Writing (10 pts, scored with adjusted MCPS Intermediate Learner Presentational Rubric)</p>
+<div class="rubric">
+<div><strong>Sections I&ndash;IV (30 pts):</strong> Objective items scored per answer key from Common Task document; 1 point per correct answer</div>
+<div><strong>Section V &mdash; Writing (10 pts):</strong> Scored with adjusted MCPS Intermediate Learner Presentational Rubric on task completion, vocabulary, grammar, and comprehensibility</div>
+<div><strong>Writing Checklist:</strong> Greeting, future plans, job aspects, competencies/training, farewell, and use of unit vocabulary + grammar</div>
+<div><strong>Answer Key:</strong> I: B,C,B,A,C &bull; II: F,J,D,A,H,B,E,G,I &bull; III: A,B,A,C,A,B &bull; IV: D,B,C,C,C,C,A,C,C,B</div>
+</div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>The exam IS the final CFU.</strong> After grading, analyze results by section: (1) Listening &mdash; did students understand authentic spoken Spanish? (2) Vocabulary &mdash; can they match terms to real-world scenarios? (3) Reading &mdash; can they interpret an authentic job posting? (4) Grammar &mdash; can they apply structures in context? (5) Writing &mdash; can they produce a coherent, grammatically sound message? Use this data to inform your approach to similar structures in future units and to identify students who may need continued support.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>Exam day is individual, but discourse was built into every day leading up to this.</strong> The 6 weeks of structured partner conversations, debates, roleplays, gallery walks, and games have prepared students to demonstrate their skills independently today. The writing section (Section V) is where all that practice pays off &mdash; students who participated actively in discourse activities throughout the unit will have the language readily available for the email writing task.</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> The exam is the same for all students. Heritage speakers should aim for sophisticated, detailed writing in Section V (the rubric rewards depth). If they finish early, provide an extension: write a second email, this time as the COUNSELOR responding to a student's career questions. This practices presentational writing from a different perspective.</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Standard MCPS accommodations apply (extended time, separate setting, etc. per IEP/504). For all students: ensure the listening audio is played at appropriate volume, twice, with a pause between. For the writing section, the built-in checklist on the exam (greeting, plans, aspects, competencies, farewell) serves as a scaffold. Consider allowing these students extra time if needed, per school policy.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+</div><!-- end container -->
+
+<footer>
+<p>Unit 3.5: El desarrollo profesional &middot; MCPS Spanish 3 &middot; Week 6 of 6</p>
+<p style="margin-top:4px;">Common Tasks: Di&aacute;logo simulado (Day 28) &bull; Examen final (Day 30) &bull; Scored with MCPS Intermediate Learner Rubrics</p>
+<p style="margin-top:8px;font-style:italic;">Congratulations on completing the unit! &iexcl;Bien hecho!</p>
+</footer>
+
+<script>
+document.querySelectorAll('.day-card').forEach((card,i)=>{
+  if(i>0) card.classList.remove('open');
+});
+</script>
+
+</body>
+</html>

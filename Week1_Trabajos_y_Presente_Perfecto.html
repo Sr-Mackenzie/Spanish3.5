@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 3.5 Week 1 — Los trabajos actuales y el presente perfecto</title>
+<style>
+:root{--navy:#1a2744;--blue:#2c5282;--sky:#ebf4ff;--gold:#d69e2e;--goldlight:#fefcbf;--green:#276749;--greenlight:#c6f6d5;--red:#c53030;--redlight:#fed7d7;--purple:#553c9a;--purplelight:#e9d8fd;--gray:#718096;--graylight:#f7fafc;--white:#fff;--radius:10px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f0f4f8;color:#2d3748;line-height:1.6;}
+header{background:linear-gradient(135deg,var(--navy),var(--blue));color:var(--white);padding:28px 32px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2);}
+header h1{font-size:1.6rem;margin-bottom:4px;}
+header p{opacity:.85;font-size:.95rem;}
+.week-nav{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+.week-nav a{background:rgba(255,255,255,.15);color:var(--white);text-decoration:none;padding:6px 16px;border-radius:20px;font-size:.85rem;transition:.2s;}
+.week-nav a:hover,.week-nav a.active{background:var(--gold);color:var(--navy);font-weight:600;}
+.container{max-width:1100px;margin:0 auto;padding:24px 16px 60px;}
+.unit-overview{background:var(--white);border-radius:var(--radius);padding:24px;margin-bottom:24px;border-left:5px solid var(--gold);box-shadow:0 1px 4px rgba(0,0,0,.08);}
+.unit-overview h2{color:var(--navy);font-size:1.25rem;margin-bottom:8px;}
+.unit-overview ul{list-style:none;padding:0;}
+.unit-overview li{padding:4px 0;padding-left:20px;position:relative;}
+.unit-overview li::before{content:"▸";position:absolute;left:0;color:var(--gold);font-weight:bold;}
+.day-card{background:var(--white);border-radius:var(--radius);margin-bottom:20px;box-shadow:0 1px 6px rgba(0,0,0,.08);overflow:hidden;transition:.2s;}
+.day-card:hover{box-shadow:0 3px 12px rgba(0,0,0,.12);}
+.day-header{padding:16px 20px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none;}
+.day-header h3{font-size:1.1rem;display:flex;align-items:center;gap:10px;}
+.day-num{background:var(--blue);color:var(--white);width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;flex-shrink:0;}
+.day-header .toggle{font-size:1.3rem;color:var(--gray);transition:.3s;}
+.day-card.open .toggle{transform:rotate(180deg);}
+.day-body{display:none;padding:0 20px 20px;}
+.day-card.open .day-body{display:block;}
+.section{margin-bottom:16px;}
+.section-title{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.section-title.obj{color:var(--blue);}
+.section-title.act{color:var(--green);}
+.section-title.cfu{color:var(--gold);}
+.section-title.disc{color:var(--purple);}
+.section-title.diff{color:var(--red);}
+.section-title.hw{color:var(--gray);}
+.section-title.grade{color:var(--red);}
+.badge{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.75rem;font-weight:600;}
+.badge-interp{background:#bee3f8;color:#2a4365;}
+.badge-interpersonal{background:#c6f6d5;color:#22543d;}
+.badge-present{background:#e9d8fd;color:#44337a;}
+.obj-box{background:var(--sky);border-radius:8px;padding:12px 16px;font-size:.95rem;}
+.obj-box strong{color:var(--blue);}
+.act-list{list-style:none;padding:0;counter-reset:act;}
+.act-list li{padding:8px 12px;background:var(--greenlight);border-radius:6px;margin-bottom:6px;padding-left:36px;position:relative;font-size:.93rem;}
+.act-list li::before{counter-increment:act;content:counter(act);position:absolute;left:10px;top:9px;background:var(--green);color:var(--white);width:20px;height:20px;border-radius:50%;font-size:.7rem;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.cfu-box{background:var(--goldlight);border-radius:8px;padding:12px 16px;font-size:.93rem;border-left:3px solid var(--gold);}
+.disc-box{background:var(--purplelight);border-radius:8px;padding:12px 16px;font-size:.93rem;border-left:3px solid var(--purple);}
+.diff-container{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:700px){.diff-container{grid-template-columns:1fr;}}
+.diff-up,.diff-down{border-radius:8px;padding:12px 16px;font-size:.9rem;}
+.diff-up{background:#fefcbf;border-left:3px solid var(--gold);}
+.diff-down{background:var(--redlight);border-left:3px solid var(--red);}
+.diff-up strong{color:#975a16;}
+.diff-down strong{color:var(--red);}
+.hw-box{background:var(--graylight);border-radius:8px;padding:12px 16px;font-size:.93rem;border-left:3px solid var(--gray);}
+.grade-card{background:linear-gradient(135deg,#fff5f5,#fed7d7);border:2px solid var(--red);border-radius:var(--radius);padding:20px;margin-top:24px;}
+.grade-card h3{color:var(--red);margin-bottom:8px;font-size:1.1rem;}
+.grade-card .rubric{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;}
+.grade-card .rubric div{background:var(--white);padding:8px 12px;border-radius:6px;font-size:.88rem;}
+.timer{font-size:.8rem;color:var(--gray);margin-left:auto;white-space:nowrap;}
+.tag{display:inline-block;font-size:.7rem;padding:2px 8px;border-radius:10px;margin-left:6px;font-weight:600;}
+.tag-vocab{background:#bee3f8;color:#2a4365;}
+.tag-gram{background:#fefcbf;color:#975a16;}
+.tag-culture{background:#c6f6d5;color:#22543d;}
+.tag-assess{background:#fed7d7;color:#9b2c2c;}
+footer{text-align:center;padding:20px;color:var(--gray);font-size:.82rem;}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Unidad 3.5 — El desarrollo profesional</h1>
+<p>MCPS Spanish 3 &middot; Back-Mapped Unit Plan &middot; Montgomery County Public Schools</p>
+<nav class="week-nav">
+<a href="Week1_Trabajos_y_Presente_Perfecto.html" class="active">Week 1</a>
+<a href="Week2_Trayectorias_y_Funciones.html">Week 2</a>
+<a href="Week3_Aspectos_y_Subjuntivo_Adjetival.html">Week 3</a>
+<a href="Week4_Competencias_Futuro_SiClauses.html">Week 4</a>
+<a href="Week5_Subjuntivo_Adverbial_Pronombres.html">Week 5</a>
+<a href="Week6_Review_y_Assessments.html">Week 6</a>
+</nav>
+</header>
+
+<div class="container">
+
+<!-- WEEK OVERVIEW -->
+<div class="unit-overview">
+<h2>Week 1: Los trabajos actuales y el presente perfecto</h2>
+<p style="margin-bottom:10px;color:var(--gray);font-size:.9rem;">Focus: Introduce the unit theme, current youth jobs vocabulary, and review the present perfect tense to discuss work and volunteer experiences.</p>
+<ul>
+<li><strong>Vocabulary:</strong> Los trabajos actuales (cajero/a, camarero/a, consejero/a de campamento, niñero/a, salvavidas)</li>
+<li><strong>Grammar:</strong> El presente perfecto — review of form and irregular participles</li>
+<li><strong>Culture:</strong> Youth labor laws, why young people work, introduction to career collage</li>
+<li><strong>Modes:</strong> <span class="badge badge-interp">Interpretive</span> <span class="badge badge-interpersonal">Interpersonal</span> <span class="badge badge-present">Presentational</span></li>
+<li><strong>Weekly Gradebook Entry:</strong> Written reflection using the present perfect about work/volunteer experiences (Day 5)</li>
+</ul>
+</div>
+
+<!-- DAY 1 -->
+<div class="day-card open">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">1</span> Unit Launch &amp; Career Interests <span class="tag tag-culture">Culture</span><span class="tag tag-vocab">Vocab Preview</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>identify and discuss my personal interests</strong> and begin to connect them to possible careers. I can <strong>recognize vocabulary</strong> related to current youth jobs.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up — "¿Por qué trabajan los jóvenes?" (7 min):</strong> Display the question from Slide 4. Students do a 2-minute silent brainstorm on sticky notes (or Jamboard), then share at tables. Teacher collects 3–4 responses aloud. This activates prior knowledge and sets the unit theme.</li>
+<li><strong>Can-Do Statements Introduction (5 min):</strong> Distribute or display the Can-Do Statements (from the pptx). Students self-assess where they are NOW on the progress bar. Explain they will revisit these at the end of the unit. Frame the unit: "By the end, you'll be able to talk about your future career in Spanish."</li>
+<li><strong>Collage Activity — "¡Diseña tu collage!" (20 min):</strong> Adapted from Slide 3. Students create a digital collage (Google Slides, 1 slide) showing their interests and how these connect to future work. They add 3–5 images and label each in Spanish (even basic labels are fine). Play background music in Spanish.</li>
+<li><strong>Gallery Walk + Partner Share (8 min):</strong> Students do a structured gallery walk viewing 4–5 classmates' collages. With a partner, they discuss: "¿Qué intereses tienes tú?" and "¿Qué trabajo puede conectar con este interés?" using a sentence frame on the board.</li>
+<li><strong>Vocab Preview &amp; Wrap-Up (5 min):</strong> Flash the 5 current jobs vocabulary (Slide 7: cajero, camarero, consejero de campamento, niñero, salvavidas) with images. Students repeat chorally. Quick informal poll: "¿Conoces a alguien con uno de estos trabajos?"</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>Exit Ticket:</strong> On a sticky note or Canvas text entry, students write 2 interests from their collage and 1 job from today's vocabulary that might connect. Sentence frame: "Me interesa ______ y un trabajo posible es ______."</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>Structured Gallery Walk + Think-Pair-Share:</strong> Provide sentence frames on the board ("Yo creo que ______ puede ser un buen trabajo para ti porque…"). Assign partners rather than letting students choose — keeps 8th graders focused and on task. Set a visible timer for each rotation (2 min).</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> Label collage items with full sentences explaining WHY that interest connects to a career. During gallery walk, they serve as "language models" — partner them strategically to help classmates form Spanish responses. Can add additional jobs beyond the 5 listed.</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Provide a pre-made word bank for collage labels (English + Spanish side by side). During gallery walk, allow bilingual sentence frames. The exit ticket can be completed with a word bank visible.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DAY 2 -->
+<div class="day-card">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">2</span> Los trabajos actuales — Deep Dive <span class="tag tag-vocab">Vocabulary</span><span class="tag tag-culture">Culture</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>identify and describe 5 current youth jobs</strong> in Spanish and <strong>discuss youth labor laws</strong> in the U.S. and Spanish-speaking countries.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up — Vocab Recall (5 min):</strong> Display images of the 5 jobs (no labels). Students write the Spanish word for each in their notebooks. Quick check: volunteer answers, correct together.</li>
+<li><strong>Vocab Deep Dive with Slides 7–8 (12 min):</strong> Present each job with context sentences from the unit presentation. For each job, ask: "¿Qué hace esta persona?" and "¿Dónde trabaja?" Students copy vocabulary into a graphic organizer (3 columns: Trabajo, ¿Qué hace?, ¿Dónde?).</li>
+<li><strong>Youth Labor Laws Discussion (10 min):</strong> Use Slide 6. Teacher presents key facts about youth labor laws in Maryland (minimum age, minimum wage, hour restrictions). Then show a brief comparison with a Spanish-speaking country (e.g., Mexico or Spain). Students discuss at tables: "¿Son justas estas leyes? ¿Por qué sí o no?"</li>
+<li><strong>Video: "Tipos de trabajos para jóvenes" (8 min):</strong> Play a short authentic video about youth employment (or use content from Slide 8). Students complete a simple viewing guide: list 3 jobs mentioned and 1 new detail they learned.</li>
+<li><strong>Partner Interview — "¿Qué trabajo te interesa?" (10 min):</strong> Structured partner conversation. Student A asks 3 questions from a prompt card; Student B answers using the new vocabulary. Then switch. Questions: ¿Qué trabajo te interesa más? ¿Por qué? ¿Conoces a alguien que tenga este trabajo?</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>Quick Quiz on Canvas (5 matching items):</strong> Match the 5 jobs to their descriptions/images. Auto-graded, gives you immediate data on who needs re-teaching. Not a gradebook entry — formative only.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>Structured Partner Interview with Role Cards:</strong> Each student gets a card with their questions printed. This prevents off-task behavior because there's a clear script to follow. Circulate and listen — use a simple checklist to note who is using the target vocabulary. Set a timer: 4 min per partner, then switch.</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> Add follow-up questions to the partner interview: "¿Cuáles son las ventajas y desventajas de este trabajo?" They can also brainstorm additional youth jobs not on the list and share with the class. During the labor laws discussion, they can share personal/family knowledge about work norms in their heritage country.</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Provide the graphic organizer partially filled in (2 of 5 jobs completed as models). For the partner interview, give response sentence frames: "Me interesa ser ______ porque ______." Video viewing guide includes word bank for possible answers.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DAY 3 -->
+<div class="day-card">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">3</span> El presente perfecto — Review &amp; Reintroduction <span class="tag tag-gram">Grammar</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>form the present perfect tense</strong> (haber + past participle) and <strong>use it to talk about recent work and life experiences</strong>.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up — "¿Qué has hecho hoy?" (5 min):</strong> Write the question on the board. Students brainstorm answers in pairs. Teacher asks 3–4 volunteers to share. This naturally reintroduces the present perfect without a formal grammar lecture first.</li>
+<li><strong>Grammar Reintroduction with Slides 23–25 (12 min):</strong> Walk through the formation: haber (he, has, ha, hemos, han) + past participle (-ado, -ido). Highlight the irregular participles (hecho, escrito, dicho, visto, puesto, abierto, roto, vuelto, muerto, cubierto). Students copy the chart into notebooks. Emphasize: this was introduced in 3.1 — this is a review and deepening.</li>
+<li><strong>Whiteboard Practice (8 min):</strong> Students use individual whiteboards (or notebook paper held up). Teacher gives infinitives; students write the present perfect form with a subject. "Yo / trabajar" → "Yo he trabajado." Do 8–10 rapid-fire examples, mixing regular and irregular. Immediate visual check.</li>
+<li><strong>"Yo he… pero nunca he…" Speaking Chain (12 min):</strong> Students stand in a circle (or at desks in a chain). Each student says one thing they HAVE done and one thing they have NEVER done related to work/life: "Yo he trabajado como niñero pero nunca he trabajado como salvavidas." Next student must listen and add their own. This builds discourse AND present perfect reps.</li>
+<li><strong>Written Practice (8 min):</strong> Worksheet or Canvas assignment: 8 sentences converting simple past to present perfect, all themed around work experiences. "Trabajé en un restaurante" → "He trabajado en un restaurante."</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>Whiteboard Spot-Check + Exit Ticket:</strong> During whiteboard practice, note which students consistently form the tense incorrectly (common errors: forgetting "haber," using wrong participle ending). Exit ticket: write 3 original present perfect sentences about your own experiences.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>"Yo he… pero nunca he…" Speaking Chain:</strong> This is a structured, low-stakes speaking activity where every student MUST participate. The chain format creates peer accountability. Post the sentence frame on the board. To manage 8th graders: keep the chain moving fast (max 15 seconds per student) and make it a game — if someone takes too long, their table group "helps."</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> During the speaking chain, they must add a follow-up detail: "He trabajado como niñero y he aprendido a ser más paciente." On the written practice, they complete an extended version: write 5 original sentences using irregular participles specifically, then answer "¿Qué experiencia previa has tenido que te ayudaría en un trabajo futuro?"</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Provide a conjugation reference card for "haber" that stays on their desk. For the speaking chain, allow them to read from a pre-written sentence (they write it first, then read it aloud). Written practice includes the infinitive AND the correct participle in a word bank — students only need to conjugate "haber" and assemble.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DAY 4 -->
+<div class="day-card">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">4</span> Presente perfecto — Applied Practice <span class="tag tag-gram">Grammar</span><span class="tag tag-vocab">Vocabulary</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>ask and answer questions about work experiences</strong> using the present perfect and current jobs vocabulary in context.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up — Error Correction (5 min):</strong> Display 4 present perfect sentences with common errors (missing "haber," wrong participle, wrong subject-verb agreement). Students identify and correct each one in their notebooks. Review together.</li>
+<li><strong>Interpersonal Activity: "Encuesta de experiencias" (15 min):</strong> Students receive a "Find Someone Who…" grid (6–8 boxes). Each box has a prompt: "Ha trabajado como cajero/a," "Ha cuidado niños," "Ha ganado dinero por su cuenta," "Ha tenido una entrevista," etc. Students circulate, asking classmates in Spanish: "¿Has trabajado como cajero?" If yes, they write that person's name and one detail. Must talk to at least 5 different classmates.</li>
+<li><strong>Authentic Text or Video Connection (12 min):</strong> Show a short authentic resource — a Spanish-language social media post, article excerpt, or video clip where someone discusses their work experience using the present perfect. Students answer 3 comprehension questions. This exposes them to authentic language and models how the present perfect is used naturally.</li>
+<li><strong>Collaborative Writing — "Nuestras experiencias" (10 min):</strong> In groups of 3, students write a short paragraph (5–6 sentences) summarizing what they learned from the "Encuesta." Model: "En nuestra clase, tres personas han trabajado como niñeros. Nadie ha sido salvavidas. Dos personas han ganado dinero por su cuenta." Each group shares one finding with the class.</li>
+<li><strong>Wrap-Up &amp; Preview (3 min):</strong> Remind students that tomorrow is the weekly written assessment. They will need to use the present perfect and the jobs vocabulary. Quick review of key irregular participles.</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>Circulate during "Encuesta":</strong> Listen for correct formation of questions ("¿Has + participio?"). Note students who default to English or avoid using the structure. The collaborative paragraph is also a formative check — collect or photograph each group's paragraph to review accuracy.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>"Find Someone Who" with Accountability:</strong> This is a high-movement, high-engagement activity that 8th graders love. Key management tips: (1) Set a timer — 10 minutes max for circulating. (2) Require they ask the FULL question in Spanish (not just point at the box). (3) They must write the person's name AND one follow-up detail to prevent superficial check-offs. (4) Debrief as a whole class so there's a purpose to the data collected.</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> Their "Encuesta" grid includes more complex prompts: "Ha emprendido un proyecto personal," "Ha solicitado empleo formalmente." During collaborative writing, they serve as the scribe and must add 2 sentences using vocabulary beyond the basic 5 jobs. For the authentic text, they answer comprehension questions AND write a personal connection response.</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> The "Encuesta" grid includes the full question pre-written (students read it aloud rather than forming it from scratch). For collaborative writing, provide a paragraph frame with blanks: "En nuestra clase, ______ personas han ______. Nadie ha ______." The authentic text activity includes a glossary of unfamiliar words.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DAY 5 -->
+<div class="day-card">
+<div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+<h3><span class="day-num">5</span> Weekly Assessment — Reflexión escrita <span class="tag tag-assess">Gradebook</span></h3>
+<span class="toggle">&#9660;</span>
+</div>
+<div class="day-body">
+
+<div class="section">
+<div class="section-title obj">&#127919; Daily Objective (Can-Do)</div>
+<div class="obj-box">I can <strong>write a reflection about my work and volunteer experiences</strong> (real or imagined) using the present perfect tense and current jobs vocabulary accurately.</div>
+</div>
+
+<div class="section">
+<div class="section-title act">&#9989; Activities &amp; Sequence (~45 min)</div>
+<ol class="act-list">
+<li><strong>Warm-Up — Vocab &amp; Grammar Quick Review (7 min):</strong> Project a rapid-fire slide with 5 vocab images and 5 present perfect conjugation prompts. Students complete them on scratch paper. Do NOT collect — this is a last-minute review and confidence builder before the assessment.</li>
+<li><strong>Assessment Introduction &amp; Modeling (5 min):</strong> Display the writing prompt on the board and read it aloud. Show a brief model paragraph (3–4 sentences) to illustrate expectations. Clarify: they may write about REAL experiences or IMAGINED ones. Stress: use the present perfect at least 4 times, include at least 3 vocabulary words from the unit.</li>
+<li><strong>Written Assessment — "Mi experiencia laboral" (25 min):</strong> Students write a paragraph of 8–10 sentences on Canvas (text entry) or on paper. <br><br><em>Prompt: "Escribe una reflexión sobre tus experiencias con el trabajo o el voluntariado. ¿Has tenido un trabajo? ¿Has ayudado a alguien? ¿Qué has aprendido? Si no has trabajado, imagina: ¿qué trabajo te gustaría tener y qué habrías hecho en ese puesto? Usa el presente perfecto por lo menos 4 veces y por lo menos 3 palabras del vocabulario de la unidad."</em></li>
+<li><strong>Peer Read &amp; React (5 min):</strong> After submitting, students swap with a partner (or read a classmate's Canvas submission). They write one positive comment ("Me gusta que mencionaste…") and one question ("¿Has pensado en…?") — in Spanish. This adds a discourse element even to an assessment day.</li>
+<li><strong>Week 1 Wrap-Up (3 min):</strong> Revisit Can-Do Statements. Students re-mark their progress. Preview Week 2: "Next week we'll explore career paths and what jobs DO."</li>
+</ol>
+</div>
+
+<div class="section">
+<div class="section-title grade">&#128203; Gradebook Entry — Week 1 All-Task</div>
+<div class="grade-card">
+<h3>"Mi experiencia laboral" — Written Reflection</h3>
+<p><strong>Mode:</strong> Presentational Writing &nbsp;|&nbsp; <strong>Time:</strong> 25 min &nbsp;|&nbsp; <strong>Points:</strong> Rubric-based (use adjusted MCPS Intermediate Learner Presentational Rubric)</p>
+<p style="margin-top:8px;"><strong>Prompt:</strong> Write 8–10 sentences reflecting on your work/volunteer experiences using the present perfect (minimum 4 uses) and unit vocabulary (minimum 3 words).</p>
+<div class="rubric">
+<div><strong>Task Completion:</strong> Addresses all parts of prompt; meets length requirement</div>
+<div><strong>Vocabulary:</strong> Uses 3+ unit vocabulary words accurately and in context</div>
+<div><strong>Grammar:</strong> Correct present perfect formation (haber + participle) in 4+ instances</div>
+<div><strong>Comprehensibility:</strong> Writing is understandable to a sympathetic reader; ideas are connected</div>
+</div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title cfu">&#128269; Check for Understanding</div>
+<div class="cfu-box"><strong>The assessment IS the CFU.</strong> Review student submissions for: (1) Are students forming the present perfect correctly? (2) Are they using vocabulary in context or just listing words? (3) Common errors to address in Week 2's warm-ups. Flag students scoring below expectations for targeted re-teaching during Week 2.</div>
+</div>
+
+<div class="section">
+<div class="section-title disc">&#128483; Student Discourse Strategy</div>
+<div class="disc-box"><strong>Peer Read &amp; React:</strong> Even on assessment days, build in discourse. The 5-minute peer feedback at the end is low-stakes and adds an interpersonal reading+writing micro-task. Provide sentence starters for feedback: "Me gusta que mencionaste ______" and "Una pregunta que tengo es ______." This also gives early finishers something meaningful to do.</div>
+</div>
+
+<div class="section">
+<div class="section-title diff">&#9878; Differentiation</div>
+<div class="diff-container">
+<div class="diff-up"><strong>Heritage/Native Speakers &#8593;:</strong> Extended prompt — write 12+ sentences and include at least 2 irregular past participles. Add a concluding paragraph: "¿Qué has aprendido de tus experiencias que te ayudará en el futuro?" They should also demonstrate more sophisticated vocabulary beyond the basic 5 jobs (e.g., desempeñar, emprender, ocuparse de). Peer feedback must include a suggestion, not just a compliment.</div>
+<div class="diff-down"><strong>Additional Support &#8595;:</strong> Reduced requirement: 5–6 sentences, 3 present perfect uses, 2 vocabulary words. Provide a writing scaffold on paper: sentence starters for each part of the prompt ("Yo he ______," "También he ______," "He aprendido que ______," "Un trabajo que me interesa es ______ porque ______"). Allow access to the vocabulary list and conjugation chart during writing.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+</div><!-- end container -->
+
+<footer>
+<p>Unit 3.5: El desarrollo profesional &middot; MCPS Spanish 3 &middot; Created for Montgomery County Public Schools</p>
+<p style="margin-top:4px;">Back-mapped from Common Tasks: Diálogo simulado, Examen final, Presentación escrita, Presentación oral</p>
+</footer>
+
+<script>
+// Open Day 1 by default, rest collapsed
+document.querySelectorAll('.day-card').forEach((card,i)=>{
+  if(i>0) card.classList.remove('open');
+});
+</script>
+
+</body>
+</html>
